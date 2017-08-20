@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Interview Note - Binary Search &amp; Sorted Array - kidChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Binary SearchFor a given sorted array (ascending order) and a target number, find the first index of this number in O(log n) time complexity.If the target number does not exist in the array, return -1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Note - Binary Search & Sorted Array">
+<meta property="og:url" content="http://kidchen.github.com/2015/01/22/InterviewNote2Search/index.html">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="Binary SearchFor a given sorted array (ascending order) and a target number, find the first index of this number in O(log n) time complexity.If the target number does not exist in the array, return -1">
+<meta property="og:updated_time" content="2016-03-10T09:20:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Interview Note - Binary Search & Sorted Array">
+<meta name="twitter:description" content="Binary SearchFor a given sorted array (ascending order) and a target number, find the first index of this number in O(log n) time complexity.If the target number does not exist in the array, return -1">
+<meta name="twitter:creator" content="@zhch1990">
+  
+    <link rel="alternative" href="/atom.xml" title="kidChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57180261-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-InterviewNote2Search" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Interview Note - Binary Search &amp; Sorted Array
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/22/InterviewNote2Search/" class="article-date">
+  <time datetime="2015-01-23T03:13:12.000Z" itemprop="datePublished">2015-01-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/22/InterviewNote2Search/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h3><p>For a given sorted array (ascending order) and a target number, find the first index of this number in O(log n) time complexity.<br>If the target number does not exist in the array, return -1.<br><strong>Example:</strong><br>If the array is [1, 2, 3, 3, 4, 5, 10], for given target 3, return 2.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(start &lt; end) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt;= target) &#123;</span><br><span class="line">                end = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> nums[start] == target ? start : -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Key Points:</strong></p>
+<ol>
+<li><code>while(start &lt; end)</code>: when start and end are overlapped each other, break. At this moment, we can return start or end. But it is different when we need to return the index before or after the target(see point 3).</li>
+<li><code>int mid = start + (end - start) / 2</code>: in order to avoid overflow of <code>start + end</code>, we need to do a little trick here.</li>
+<li><code>while loop</code>: in the while loop, there are two different needs:</li>
+</ol>
+<ul>
+<li>return the index of the target: as the example above.</li>
+<li>return the one before(example below)/after the target:<br><a href="https://oj.leetcode.com/problems/search-insert-position/" target="_blank" rel="external">Search Insert Position</a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(start &lt;= end) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(A[mid] == target) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(A[mid] &lt; target) &#123;</span><br><span class="line">        start = mid + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        end = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Here, we need to use <code>while(start &lt;= end)</code> so that when we break the loop, two pointers are at two different(but neighbored) positions. Besides, if we want to return the one before the index, we return <code>start</code>, otherwise we return <code>end</code>.</p>
+<a id="more"></a>
+<p><strong>Example:</strong> <a href="https://oj.leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="external">Search in rotated sorted array</a>:<br>In line 15, we can’t use <code>A[mid] &lt; A[right]</code>, eg: [3,1,1], 3.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(left &lt;= right) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(A[mid] == target) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// left part is sorted</span></span><br><span class="line">    <span class="keyword">if</span>(A[mid] &gt; A[left]) &#123;</span><br><span class="line">        <span class="comment">// target is in the left</span></span><br><span class="line">        <span class="keyword">if</span>(A[mid] &gt; target &amp;&amp; A[left] &lt;= target) &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// right part is sorted</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(A[mid] &lt; A[left]) &#123;</span><br><span class="line">        <span class="comment">// target is in the right</span></span><br><span class="line">        <span class="keyword">if</span>(A[mid] &lt; target &amp;&amp; A[right] &gt;= target) &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// mid == left or mid == right</span></span><br><span class="line">        left++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Similar Problems:</strong><br><a href="https://oj.leetcode.com/problems/search-for-a-range/" target="_blank" rel="external">Search for a Range</a>:<br>When finding left position, if <code>mid == target</code>, move <strong><code>end</code></strong> so that when break the loop, <code>start</code> will be like: <code>[end, start(left-most one)])</code>.<br>Similarly, when finding right position, if <code>mid == target</code>, move <strong><code>start</code></strong>, so that <code>end</code> will be like: <code>[end(right-most one), start]</code> when break.<br><a href="https://oj.leetcode.com/problems/search-in-rotated-sorted-array-II/" target="_blank" rel="external">Search in rotated sorted array II</a>: worst case will cost O(n) time<br><a href="https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="external">Find minimum in rotated sorted array</a><br><a href="https://oj.leetcode.com/problems/find-minimum-in-rotated-sorted-array-II/" target="_blank" rel="external">Find minimum in rotated sorted array II</a><br><a href="http://lintcode.com/en/problem/search-a-2d-matrix/" target="_blank" rel="external">Search a 2D matrix</a><br><a href="http://lintcode.com/en/problem/search-a-2d-matrix-ii/" target="_blank" rel="external">Search a 2D matrix II</a>: from top-right to bottom-left, so that left element is always smaller.<br><a href="http://lintcode.com/en/problem/find-a-peak/" target="_blank" rel="external">Find a peak</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(A[mid] &lt; A[mid + <span class="number">1</span>]) &#123;</span><br><span class="line">    start = mid + <span class="number">1</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    end = mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Sorted-Array"><a href="#Sorted-Array" class="headerlink" title="Sorted Array"></a>Sorted Array</h3><h4 id="Using-Swap"><a href="#Using-Swap" class="headerlink" title="Using Swap:"></a>Using Swap:</h4><p>Given a rotated sorted array, recover it to sorted array <strong>in-place</strong>.</p>
+<ol>
+<li>Reverse the left part of the pivot</li>
+<li>Reverse the right part of the pivot</li>
+<li>Reverse the whole array<br>eg.<br>[4, 5, 1, 2, 3] -&gt; [5, 4, 1, 2, 3] -&gt; [5, 4, 3, 2, 1] -&gt; [1, 2, 3, 4, 5]</li>
+</ol>
+<p><strong>Similar Problems:</strong><br><a href="http://lintcode.com/problem/rotate-string" target="_blank" rel="external">Rotate String</a><br><a href="http://lintcode.com/problem/reverse-words-in-a-string" target="_blank" rel="external">Reverse words in a string</a></p>
+<h4 id="Find-Top-k"><a href="#Find-Top-k" class="headerlink" title="Find Top k:"></a>Find Top k:</h4><p><a href="http://lintcode.com/en/problem/median-of-two-sorted-arrays/" target="_blank" rel="external">Median of two sorted arrays</a>:<br>General top-k problem. In this code, <code>k</code> is not the index, but the kth top number. So when we use <code>k</code> in an array, we need to <code>-1</code>.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span><span class="params">(<span class="keyword">int</span> A[], <span class="keyword">int</span> B[])</span> </span>&#123;</span><br><span class="line">        <span class="comment">// check odd/even</span></span><br><span class="line">        <span class="keyword">int</span> len = A.length + B.length;</span><br><span class="line">        <span class="keyword">if</span>((A.length + B.length) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> helper(A, B, <span class="number">0</span>, <span class="number">0</span>, len / <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> (helper(A, B, <span class="number">0</span>, <span class="number">0</span>, len / <span class="number">2</span>) + helper(A, B, <span class="number">0</span>, <span class="number">0</span>, len / <span class="number">2</span> + <span class="number">1</span>) ) / <span class="number">2.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="keyword">int</span>[] A, <span class="keyword">int</span>[] B, <span class="keyword">int</span> astart, <span class="keyword">int</span> bstart, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// if not in A/B (need to add =, since if A is empty..)</span></span><br><span class="line">        <span class="keyword">if</span>(astart &gt;= A.length) &#123;</span><br><span class="line">            <span class="keyword">return</span> B[bstart + k - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(bstart &gt;= B.length) &#123;</span><br><span class="line">            <span class="keyword">return</span> A[astart + k - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">// !!! index should be astart/bstart rather than 0 !!!</span></span><br><span class="line">            <span class="keyword">return</span> Math.min(A[astart], B[bstart]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// find kth top:</span></span><br><span class="line">        <span class="keyword">int</span> ak = astart + k/<span class="number">2</span> - <span class="number">1</span> &lt; A.length ? A[astart + k/<span class="number">2</span> - <span class="number">1</span>] : Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">int</span> bk = bstart + k/<span class="number">2</span> - <span class="number">1</span> &lt; B.length ? B[bstart + k/<span class="number">2</span> - <span class="number">1</span>] : Integer.MAX_VALUE;</span><br><span class="line">        <span class="comment">// !!! k-k/2, eg: k=3, odd number !!!</span></span><br><span class="line">        <span class="keyword">if</span>(ak &lt; bk) &#123;</span><br><span class="line">            <span class="comment">// no need to -1, because we don't put it into arrays right now</span></span><br><span class="line">            <span class="keyword">return</span> helper(A, B, astart + k/<span class="number">2</span>, bstart, k - k/<span class="number">2</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> helper(A, B, astart, bstart + k/<span class="number">2</span>, k - k/<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Similar Problems:</strong><br><a href="">Remove dulplicates from sorted array</a><br><a href="">Remove dulplicates from sorted array II</a><br><a href="http://lintcode.com/problem/merge-sorted-array" target="_blank" rel="external">Merge sorted array</a><br><a href="http://lintcode.com/problem/merge-sorted-array-ii" target="_blank" rel="external">Merge sorted array II</a></p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BinarySearch/">BinarySearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SortedArray/">SortedArray</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/23/InterviewNote3Tree/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Interview Note - Binary Tree
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/21/InterviewNoteIntro/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Interview Note - Intro&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Chen Zhang&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme designed based on <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank">Minos</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'chenzhang';
+  
+  var disqus_url = 'http://kidchen.github.com/2015/01/22/InterviewNote2Search/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

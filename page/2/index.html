@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>kidChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Chen Zhang&apos;s personal website">
+<meta property="og:type" content="website">
+<meta property="og:title" content="kidChen">
+<meta property="og:url" content="http://kidchen.github.com/page/2/index.html">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="Chen Zhang&apos;s personal website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kidChen">
+<meta name="twitter:description" content="Chen Zhang&apos;s personal website">
+<meta name="twitter:creator" content="@zhch1990">
+  
+    <link rel="alternative" href="/atom.xml" title="kidChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57180261-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer">
+      <article id="post-Update_hexo_v3_150430" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/30/Update_hexo_v3_150430/">Update Hexo 3.0</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/04/30/Update_hexo_v3_150430/" class="article-date">
+  <time datetime="2015-04-30T07:13:38.000Z" itemprop="datePublished">2015-04-30</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Technology/">Technology</a><span>></span><a class="article-category-link" href="/categories/English/Technology/Hexo/">Hexo</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/04/30/Update_hexo_v3_150430/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spend a whole night working on updating Hexo. It is much more complicated than I expected. For anyone’s convenience, I record some key points when migrate from Hexo 2.x to 3.0 besides the <a href="https://github.com/hexojs/hexo/wiki/Migrating-from-2.x-to-3.0">official documentation</a>.</p>
+<h2 id="First-things-first-uninstall-Hexo"><a href="#First-things-first-uninstall-Hexo" class="headerlink" title="First things first: uninstall Hexo"></a>First things first: uninstall Hexo</h2><p>Yes. Though the official wiki says that we can directly migrate from 2.x to 3.0, this doesn’t work (to me). Besides, instead of wasting time figuring out what’s wrong when updating, re-installating and configurating Hexo 3.0 seems acceptable to me. You can try to update directly but I didn’t do that successfully.<br>Before your uninstallation, backup your posts and any other custom setting files (eg. <code>_config.yml</code>, your own theme file, etc).<br>To uninstall Hexo, use the node package manager(npm):<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo</span><br></pre></td></tr></table></figure></p>
+<h2 id="Now-install-Hexo-3-0"><a href="#Now-install-Hexo-3-0" class="headerlink" title="Now, install Hexo 3.0"></a>Now, install Hexo 3.0</h2><p>Run<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://hexo.io/docs/">Hexo wiki</a> doesn’t mention the administration permission, but in my experience we have to add <code>sudo</code> here.</p>
+<p>Then we need to setup hexo folder in your desired place(folder).<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;folder&gt;</span><br><span class="line">$ <span class="built_in">cd</span> &lt;folder&gt;</span><br><span class="line">$ sudo npm install</span><br></pre></td></tr></table></figure></p>
+<p>Still, try <code>sudo</code> when you fail to run any command.</p>
+<p>For your future convenience, we install all necessary services here:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-index --save</span><br><span class="line">npm install hexo-generator-archive --save</span><br><span class="line">npm install hexo-generator-category --save</span><br><span class="line">npm install hexo-generator-tag --save</span><br><span class="line">npm install hexo-server --save</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-deployer-heroku --save</span><br><span class="line">npm install hexo-deployer-rsync --save</span><br><span class="line">npm install hexo-deployer-openshift --save</span><br></pre></td></tr></table></figure></p>
+<p>and any plugins you probably need:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-marked@0.2 --save</span><br><span class="line">npm install hexo-renderer-stylus@0.2 --save</span><br><span class="line">npm install hexo-generator-feed@1 --save</span><br><span class="line">npm install hexo-generator-sitemap@1 --save</span><br></pre></td></tr></table></figure></p>
+<p>All in sudo mode (or you can directly do all of these in <code>sudo -i</code> mode).<br>Now, we finished installation. </p>
+        
+          <p class="article-more-link">
+            <a href="/2015/04/30/Update_hexo_v3_150430/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-Tech150318_encode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/18/Tech150318_encode/">Character Encoding - ASCII, Unicode &amp; UTF-8</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/03/18/Tech150318_encode/" class="article-date">
+  <time datetime="2015-03-18T08:58:11.000Z" itemprop="datePublished">2015-03-18</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Technology/">Technology</a><span>></span><a class="article-category-link" href="/categories/English/Technology/Language-Processing/">Language Processing</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/03/18/Tech150318_encode/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h3 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h3><p>Single byte encoding only using the bottom 7 bits(0-127). The top bit is always 0.<br><img src="/images/ASCII.png" alt="" title="ASCII Chart"><br>In English, 128 symbols are enough to represent all character. But in other situations, French for example, they are insufficient. So we use the top bit to represent accents so that there are up to 256 characters. ‘é’ encodes as 1000 0010(130).<br>But here comes another problem. In different languages, the same binary encoding represents different characters, such as 130 in French is é, but in Hebrew, it is Gimel(ג). Not to mention Chinese characters(more than 100 thousand). So we introduce another encoding system, unicode.</p>
+<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p>“Unicode encoding” is more properly known as UTF-16: 2 bytes per “code point”. This is the native format of strings in .NET. Values outside the Basic Multilingual Plane(BMP) are encoded as surrogate pairs. These are relatively rarely used - which is a good job, as very few developers get them right, I suspect. “Unicode” is really the character set - it is unfortunate that the term is also used as a synonym for UTF-16 in .NET and various Windows applications.<br>Unicode can be implemented by different character encodings. The most commonly used encodings are UTF-8, UTF-7 and UTF-32:<br><strong>UTF-8</strong>: <em>Variable length encoding</em>, 1-4 bytes covers every current character. ASCII values are encoded as ASCII.<br><strong>UTF-7</strong>: Usually used for mail encoding. Chances are if you think you need it and you’re not doing mail, you’re wrong. (not widely used at all.)<br><strong>UTF-32</strong>: Fixed width encoding using 4 bytes per code point. This isn’t very efficient, but makes life easier outside the BMP.</p>
+<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>UTF-8 has become the dominant character encoding for the World Wide Web. The rule of UTF-8 is:<br>(1) If this is in ASCII, UTF-8 is the same with ASCII<br>(2) For n UTF bytes(n &gt; 1), the first n bits in the first byte set as 1, the n + 1 bit sets as 0, all the first two bits in the following bytes are all 10. The rest of the bits are represented as the unicode of the character.</p>
+<table>
+<thead>
+<tr>
+<th>UTF Bytes</th>
+<th>Hexadecimal</th>
+<th>Binary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0000 0000 to 0000 007F</td>
+<td>0xxxxxxx</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0000 0080 to 0000 07FF</td>
+<td>110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0000 0800 to 0000 FFFF</td>
+<td>1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0001 0000 to 0010 FFFF</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the unicode of “严” is 4E25 (100111000100101). According to the table above, this character belongs to the third row. So its UTF-8 is E4B8A5 (11100100 10111000 10100101).<br>We can see that actually unicode is different with UTF-8. But there are some libraries that can do the convert.</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/03/18/Tech150318_encode/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Encoding/">Encoding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-InterviewNote8Questions" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/08/InterviewNote8Questions/">Interview Note - Examples</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/02/08/InterviewNote8Questions/" class="article-date">
+  <time datetime="2015-02-09T07:38:30.000Z" itemprop="datePublished">2015-02-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/02/08/InterviewNote8Questions/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Single-Number"><a href="#Single-Number" class="headerlink" title="Single Number"></a>Single Number</h3><p><strong>XOR</strong> features:<br>a ^ b = c<br>a ^ c = b<br>b ^ c = a<br>a ^ 0 = a<br>a ^ a = 0<br>(a ^ b) ^ c = a ^ (b ^ c)</p>
+<ul>
+<li>I: all the numbers appear twice except one<br>XOR all the numbers, and the result is the one</li>
+<li>II: all the numbers appear three times except one<br>Use a <code>int[32]</code> to store each bit, if the number of this bit can be mod by 3, we set it as 0, otherwise we set it as 1.</li>
+<li>III: all the numbers appear twice except two<br>XOR all the numbers so we can get the <code>two</code> by XOR. Since these two elements are not the same, there is at least one bit that different. We find this <code>different</code> position and XOR all the elements which have 1 on position <code>different</code>, the result is one of the two. Finally, we XOR the found one with XOR-ed <code>two</code>, we can get another one.</li>
+</ul>
+<h3 id="Majority-Number"><a href="#Majority-Number" class="headerlink" title="Majority Number"></a>Majority Number</h3><ul>
+<li>I: find the number appears more than half<br>Since it is a <em>strict</em> majority number, we only need to maintain a variable <code>result</code> and a <code>counter</code>. Initially, when the <code>counter</code> faces with a different number, minus one of counter and change the <code>result</code> to this new number, otherwise we only need to add 1 to the <code>counter</code>. And finally, the <code>result</code> we maintained is the result. (We need to do another pass to make sure this number is the one we are looking for)</li>
+<li>II: find the number appears more than 1/3<br>Similar with I, we maintain two variables and two counters so that we can get most appeared two numbers. And then we put these two numbers back to the array to find out which one appears more than 1/3. (We can’t use counter to find out, because counters have minus operation during the traversal)</li>
+<li>III: find the number appears more than 1/k<br>We maintain a <code>HashMap&lt;number, counter&gt;</code>. Since if majority, each k different numbers should have more than one element. When we get k entries in the map, we remove entries which values are 1. Finally, find the entry that have highest value(count), that key should be the majority number. In this way, we can implement this in <code>O(n)</code> time and <code>O(k)</code> extra space.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">majorityNumber</span><span class="params">(ArrayList&lt;Integer&gt; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span>(map.containsKey(num)) &#123;</span><br><span class="line">                map.put(num, map.get(num) + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// if there are k entries, check if there are any entries that</span></span><br><span class="line">                <span class="comment">// its value == 1, that is not satisfied with "more than 1/k"</span></span><br><span class="line">                <span class="keyword">if</span>(map.size() == k) &#123;</span><br><span class="line">                    Iterator&lt;Map.Entry&lt;Integer, Integer&gt;&gt; iter = map.entrySet().iterator();</span><br><span class="line">                    <span class="keyword">while</span>(iter.hasNext()) &#123;</span><br><span class="line">                        Map.Entry&lt;Integer, Integer&gt; entry = iter.next();</span><br><span class="line">                        <span class="keyword">if</span>(entry.getValue() - <span class="number">1</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                            <span class="comment">// can't use: map.remove(entry.getKey());</span></span><br><span class="line">                            <span class="comment">// above wrong code would lead the iter can't find its next !!!</span></span><br><span class="line">                            iter.remove();</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            map.put(entry.getKey(), entry.getValue() - <span class="number">1</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    map.put(num, <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// find the one that have highest value(count), that key should be the majority number</span></span><br><span class="line">        <span class="keyword">int</span> value = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> result = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(entry.getValue() &gt; value) &#123;</span><br><span class="line">                value = entry.getValue();</span><br><span class="line">                result = entry.getKey();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2015/02/08/InterviewNote8Questions/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-InterviewNote7DataStructure" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/01/InterviewNote7DataStructure/">Interview Note - Data Structure</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/02/01/InterviewNote7DataStructure/" class="article-date">
+  <time datetime="2015-02-02T04:27:19.000Z" itemprop="datePublished">2015-02-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/02/01/InterviewNote7DataStructure/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Data Structure</strong> is a way to organize data. It provides some methods to handle data stream, e.g. insert, delete, etc.</p>
+<h3 id="Linear-Data-Structure"><a href="#Linear-Data-Structure" class="headerlink" title="Linear Data Structure"></a>Linear Data Structure</h3><h4 id="Queue-amp-Stack"><a href="#Queue-amp-Stack" class="headerlink" title="Queue &amp; Stack"></a>Queue &amp; Stack</h4><p><a href="http://lintcode.com/problem/min-stack">Min Stack</a><br>Use two stacks, one is storing the input, when calling <code>pop()</code> or <code>peek()</code>, pop from another stack, which stores the minimum values from top to bottom.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; stack = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    ArrayList&lt;Integer&gt; minStack = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        stack.add(x);</span><br><span class="line">        <span class="keyword">if</span>(minStack.isEmpty() || minStack.get(minStack.size() - <span class="number">1</span>) &gt;= x) &#123;</span><br><span class="line">            minStack.add(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> elem = stack.remove(stack.size() - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(!minStack.isEmpty() &amp;&amp; minStack.get(minStack.size() - <span class="number">1</span>) == elem) &#123;</span><br><span class="line">            minStack.remove(minStack.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!stack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> stack.get(stack.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!minStack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> minStack.get(minStack.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://lintcode.com/en/problem/implement-queue-by-stacks/">Implement Queue by stacks</a><br>Use two stacks, one is for storing elements. When calling <code>pop()</code> or <code>top()</code>, pop the elements from the first stack and push them into the second one.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack1;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack2;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Solution</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">// do initialization</span></span><br><span class="line">       stack1 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">       stack2 = <span class="keyword">new</span> Stack&lt;Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> element)</span> </span>&#123;</span><br><span class="line">        stack1.push(element);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack2.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span>(!stack1.isEmpty()) &#123;</span><br><span class="line">                stack2.push(stack1.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack2.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack2.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span>(!stack1.isEmpty()) &#123;</span><br><span class="line">                stack2.push(stack1.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack2.peek();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://lintcode.com/problem/largest-rectangle-in-histogram">Largest Rectangle in Histogram</a><br>Brute force: totally <code>O(n^2)</code> windows and <code>O(n)</code> to find the minimun one in each window, so we need <code>O(n^3)</code> time.<br>Improve: for each number, search both side of it until find two smaller number, calculate the result, <code>O(n^2)</code> cost.<br>Best: use a stack to store the <strong>index</strong> (all increased heights), when faced with a smaller one, pop out from tha stack and calculate the area until the value bigger than the peek() one. This method cost <code>O(n)</code> time, with <code>O(n)</code> space in worst case (two passes).</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/02/01/InterviewNote7DataStructure/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataStructure/">DataStructure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-InterviewNote6Graph" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/29/InterviewNote6Graph/">Interview Note - Graph &amp; Search</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/29/InterviewNote6Graph/" class="article-date">
+  <time datetime="2015-01-29T08:53:31.000Z" itemprop="datePublished">2015-01-29</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/29/InterviewNote6Graph/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://lintcode.com/problem/clone-graph">Clone Graph</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for undirected graph.</span><br><span class="line"> * class UndirectedGraphNode &#123;</span><br><span class="line"> *     int label;</span><br><span class="line"> *     ArrayList&lt;UndirectedGraphNode&gt; neighbors;</span><br><span class="line"> *     UndirectedGraphNode(int x) &#123; label = x; neighbors = new ArrayList&lt;UndirectedGraphNode&gt;(); &#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span><span class="params">(UndirectedGraphNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkedList&lt;UndirectedGraphNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;UndirectedGraphNode&gt;();</span><br><span class="line">        HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt; map = <span class="keyword">new</span> HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();</span><br><span class="line">        queue.offer(node);</span><br><span class="line">        map.put(node, <span class="keyword">new</span> UndirectedGraphNode(node.label));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            UndirectedGraphNode cur = queue.poll();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cur.neighbors.size(); i++) &#123;</span><br><span class="line">                <span class="comment">// !!! if node not in map, add a new node into the map !!!</span></span><br><span class="line">                <span class="keyword">if</span>(!map.containsKey(cur.neighbors.get(i))) &#123;</span><br><span class="line">                    map.put(cur.neighbors.get(i), <span class="keyword">new</span> UndirectedGraphNode(cur.neighbors.get(i).label));</span><br><span class="line">                    queue.offer(cur.neighbors.get(i));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// now we are sure that the node is existed, add the neighbors to the value</span></span><br><span class="line">                map.get(cur).neighbors.add(map.get(cur.neighbors.get(i)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> map.get(node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://lintcode.com/en/problem/topological-sorting/">Topological Sorting</a><br>DFS: <code>O(n)</code> time with <code>O(n)</code> space for the map and the result.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for Directed graph.</span><br><span class="line"> * class DirectedGraphNode &#123;</span><br><span class="line"> *     int label;</span><br><span class="line"> *     ArrayList&lt;DirectedGraphNode&gt; neighbors;</span><br><span class="line"> *     DirectedGraphNode(int x) &#123; label = x; neighbors = new ArrayList&lt;DirectedGraphNode&gt;(); &#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> graph: A list of Directed graph node</span><br><span class="line">     * <span class="doctag">@return</span>: Any topological order for the given graph.</span><br><span class="line">     */</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;DirectedGraphNode&gt; <span class="title">topSort</span><span class="params">(ArrayList&lt;DirectedGraphNode&gt; graph)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;DirectedGraphNode&gt; result = <span class="keyword">new</span> ArrayList&lt;DirectedGraphNode&gt;();</span><br><span class="line">        <span class="keyword">if</span>(graph == <span class="keyword">null</span> || graph.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// construct map with all nodes</span></span><br><span class="line">        HashMap&lt;DirectedGraphNode, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;DirectedGraphNode, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(DirectedGraphNode node: graph) &#123;</span><br><span class="line">            <span class="comment">// mark 0 as unsorted</span></span><br><span class="line">            map.put(node, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// find a new unsorted node to start sorting (if possible):</span></span><br><span class="line">        <span class="keyword">while</span> (hasUnsorted(map, graph)) &#123;</span><br><span class="line">            DirectedGraphNode node = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">for</span> (DirectedGraphNode temp : graph) &#123;</span><br><span class="line">                <span class="keyword">if</span> (map.get(temp) == <span class="number">0</span>) &#123;</span><br><span class="line">                    node = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// get the node and do sort(search):</span></span><br><span class="line">            sort(map, graph, result, node);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// check if there is any node that not yet been sorted</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasUnsorted</span><span class="params">(Map&lt;DirectedGraphNode, Integer&gt; map, ArrayList&lt;DirectedGraphNode&gt; graph)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (DirectedGraphNode node : graph) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.get(node) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// search and sort the graph</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Map&lt;DirectedGraphNode, Integer&gt; map, ArrayList&lt;DirectedGraphNode&gt; graph, ArrayList&lt;DirectedGraphNode&gt; result, DirectedGraphNode node)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (map.get(node) != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// if 1: System.out.println("It is not a DAG");</span></span><br><span class="line">            <span class="comment">// if 2: sorted</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// mark 1 as visited(not yet been sorted), do with its neighbors:</span></span><br><span class="line">        map.put(node, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (DirectedGraphNode next : node.neighbors) &#123;</span><br><span class="line">            sort(map, graph, result, next);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// mark 2 as sorted</span></span><br><span class="line">        <span class="comment">// map.put(node, 2);</span></span><br><span class="line">        result.add(<span class="number">0</span>, node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/29/InterviewNote6Graph/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      </nav>
+    </section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Chen Zhang&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme designed based on <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank">Minos</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'chenzhang';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

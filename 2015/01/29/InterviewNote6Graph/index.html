@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Interview Note - Graph &amp; Search - kidChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Clone Graph1234567891011121314151617181920212223242526272829303132333435/** * Definition for undirected graph. * class UndirectedGraphNode &amp;#123; *     int label; *     ArrayList&amp;lt;UndirectedGraphNod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Note - Graph & Search">
+<meta property="og:url" content="http://kidchen.github.com/2015/01/29/InterviewNote6Graph/index.html">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="Clone Graph1234567891011121314151617181920212223242526272829303132333435/** * Definition for undirected graph. * class UndirectedGraphNode &amp;#123; *     int label; *     ArrayList&amp;lt;UndirectedGraphNod">
+<meta property="og:updated_time" content="2016-03-10T09:22:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Interview Note - Graph & Search">
+<meta name="twitter:description" content="Clone Graph1234567891011121314151617181920212223242526272829303132333435/** * Definition for undirected graph. * class UndirectedGraphNode &amp;#123; *     int label; *     ArrayList&amp;lt;UndirectedGraphNod">
+<meta name="twitter:creator" content="@zhch1990">
+  
+    <link rel="alternative" href="/atom.xml" title="kidChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57180261-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-InterviewNote6Graph" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Interview Note - Graph &amp; Search
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/29/InterviewNote6Graph/" class="article-date">
+  <time datetime="2015-01-29T08:53:31.000Z" itemprop="datePublished">2015-01-29</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/29/InterviewNote6Graph/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://lintcode.com/problem/clone-graph" target="_blank" rel="external">Clone Graph</a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for undirected graph.</span><br><span class="line"> * class UndirectedGraphNode &#123;</span><br><span class="line"> *     int label;</span><br><span class="line"> *     ArrayList&lt;UndirectedGraphNode&gt; neighbors;</span><br><span class="line"> *     UndirectedGraphNode(int x) &#123; label = x; neighbors = new ArrayList&lt;UndirectedGraphNode&gt;(); &#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span><span class="params">(UndirectedGraphNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkedList&lt;UndirectedGraphNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;UndirectedGraphNode&gt;();</span><br><span class="line">        HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt; map = <span class="keyword">new</span> HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();</span><br><span class="line">        queue.offer(node);</span><br><span class="line">        map.put(node, <span class="keyword">new</span> UndirectedGraphNode(node.label));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            UndirectedGraphNode cur = queue.poll();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cur.neighbors.size(); i++) &#123;</span><br><span class="line">                <span class="comment">// !!! if node not in map, add a new node into the map !!!</span></span><br><span class="line">                <span class="keyword">if</span>(!map.containsKey(cur.neighbors.get(i))) &#123;</span><br><span class="line">                    map.put(cur.neighbors.get(i), <span class="keyword">new</span> UndirectedGraphNode(cur.neighbors.get(i).label));</span><br><span class="line">                    queue.offer(cur.neighbors.get(i));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// now we are sure that the node is existed, add the neighbors to the value</span></span><br><span class="line">                map.get(cur).neighbors.add(map.get(cur.neighbors.get(i)));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> map.get(node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://lintcode.com/en/problem/topological-sorting/" target="_blank" rel="external">Topological Sorting</a><br>DFS: <code>O(n)</code> time with <code>O(n)</code> space for the map and the result.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * Definition for Directed graph.</span><br><span class="line"> * class DirectedGraphNode &#123;</span><br><span class="line"> *     int label;</span><br><span class="line"> *     ArrayList&lt;DirectedGraphNode&gt; neighbors;</span><br><span class="line"> *     DirectedGraphNode(int x) &#123; label = x; neighbors = new ArrayList&lt;DirectedGraphNode&gt;(); &#125;</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * <span class="doctag">@param</span> graph: A list of Directed graph node</span><br><span class="line">     * <span class="doctag">@return</span>: Any topological order for the given graph.</span><br><span class="line">     */</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;DirectedGraphNode&gt; <span class="title">topSort</span><span class="params">(ArrayList&lt;DirectedGraphNode&gt; graph)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;DirectedGraphNode&gt; result = <span class="keyword">new</span> ArrayList&lt;DirectedGraphNode&gt;();</span><br><span class="line">        <span class="keyword">if</span>(graph == <span class="keyword">null</span> || graph.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// construct map with all nodes</span></span><br><span class="line">        HashMap&lt;DirectedGraphNode, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;DirectedGraphNode, Integer&gt;();</span><br><span class="line">        <span class="keyword">for</span>(DirectedGraphNode node: graph) &#123;</span><br><span class="line">            <span class="comment">// mark 0 as unsorted</span></span><br><span class="line">            map.put(node, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// find a new unsorted node to start sorting (if possible):</span></span><br><span class="line">        <span class="keyword">while</span> (hasUnsorted(map, graph)) &#123;</span><br><span class="line">            DirectedGraphNode node = <span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">for</span> (DirectedGraphNode temp : graph) &#123;</span><br><span class="line">                <span class="keyword">if</span> (map.get(temp) == <span class="number">0</span>) &#123;</span><br><span class="line">                    node = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// get the node and do sort(search):</span></span><br><span class="line">            sort(map, graph, result, node);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// check if there is any node that not yet been sorted</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasUnsorted</span><span class="params">(Map&lt;DirectedGraphNode, Integer&gt; map, ArrayList&lt;DirectedGraphNode&gt; graph)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (DirectedGraphNode node : graph) &#123;</span><br><span class="line">            <span class="keyword">if</span> (map.get(node) == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// search and sort the graph</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Map&lt;DirectedGraphNode, Integer&gt; map, ArrayList&lt;DirectedGraphNode&gt; graph, ArrayList&lt;DirectedGraphNode&gt; result, DirectedGraphNode node)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (map.get(node) != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="comment">// if 1: System.out.println("It is not a DAG");</span></span><br><span class="line">            <span class="comment">// if 2: sorted</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// mark 1 as visited(not yet been sorted), do with its neighbors:</span></span><br><span class="line">        map.put(node, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (DirectedGraphNode next : node.neighbors) &#123;</span><br><span class="line">            sort(map, graph, result, next);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// mark 2 as sorted</span></span><br><span class="line">        <span class="comment">// map.put(node, 2);</span></span><br><span class="line">        result.add(<span class="number">0</span>, node);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><strong>Similar Problems:</strong><br><a href="http://lintcode.com/problem/permutations" target="_blank" rel="external">Permutations</a><br><a href="http://lintcode.com/problem/subsets" target="_blank" rel="external">Subsets</a><br><a href="http://lintcode.com/problem/unique-subsets" target="_blank" rel="external">Subsets II</a><br><a href="http://lintcode.com/problem/n-queens" target="_blank" rel="external">N-Queens</a><br><a href="http://lintcode.com/problem/palindrome-partitioning" target="_blank" rel="external">Palindrome Partition</a><br><a href="http://lintcode.com/problem/combination-sum" target="_blank" rel="external">Combination Sum</a><br><a href="http://lintcode.com/problem/combination-sum-ii" target="_blank" rel="external">Combination Sum II</a><br><a href="http://lintcode.com/problem/word-ladder" target="_blank" rel="external">Word Ladder</a><br><a href="http://lintcode.com/problem/word-ladder-ii" target="_blank" rel="external">Word Ladder II</a></p>
+<p>A real interview problem, <a href="http://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon" target="_blank" rel="external">Six Degree of Kevin Bacon</a>:<br><strong>DFS:</strong><br>Create a stack and initialize it with the start node.<br>While the stack is not empty<br>    Pop out the top of the stack as the current node<br>    If there is a node linked with it, do recursion and put the node into the stack<br>    If the node is the target node, pop out all the elements from the stack and return<br>    Otherwise, return to the upper level and do the recursion again<br>Return null if the recursion terminated without finding the target</p>
+<p>Tradeoff:<br>If the depth is large, the recursion will cost a lot of time. But the improvement of this method is returning to the upper level if the degree is bigger than 6 since the goal we searching is to find a path that no more than 6 steps.</p>
+<p><strong>BFS:</strong><br>Create a queue and initialize it with the start node.<br>While the queue is not empty<br>    Remove the first node(a) from the queue<br>    For each node(b) adjacent to the current node(a)<br>    If the node(b) is unvisited<br>        Put the node<b, a=""> to the hashmap<br>        If it is the target node, do the backtrack and return the arraylist<br>        Otherwise, add the adjacent node(b) to the end of the queue<br>Return null if the loop terminated without finding the target</b,></p>
+<p>Tradeoff:<br>Better to find shortest path than DFS. But if there are too many nodes in each level, it will cost a lot of time.</p>
+<p><strong>Implementation of the BFS method:</strong><br>The return type is <code>ArrayList&lt;Actor&gt;</code>, which is the path from actor_1 to actor_2. The degree of the separation is the length of the path. We can also calculate the degree during the path finding process. I use STDIO to output the degree when each level of the graph traversal ends.</p>
+<p><strong>Data structures:</strong><br>Define an Actor class. When we call its movies, it returns all the movies the actor enrolled in. All the movies stored in a hash set.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Actor</span> </span>&#123;</span><br><span class="line">    HashSet&lt;Movie&gt; movies;</span><br><span class="line">    Actor(HashSet&lt;Movie&gt; m) &#123;</span><br><span class="line">        movies = m;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Similarly, define a movie class. When we call its actors, it returns all the actors appear in this movie. All the actors stored in a hash set.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Movie</span> </span>&#123;</span><br><span class="line">    HashSet&lt;Actor&gt; actors;</span><br><span class="line">    Movie(HashSet&lt;Actor&gt; a) &#123;</span><br><span class="line">        actors = a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>We use a queue to perform the BFS. It stores all the unvisited nodes in each level of the graph. A hash map, <code>visitedActors&lt;actor1, actor2&gt;</code>, to store each pair of actors who appear in the same movie. Another hash map, <code>visitedMovies&lt;movie, boolean&gt;</code>, to store all the movies we have visited and iterated.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;Actor&gt; <span class="title">calculateDegree</span><span class="params">(Actor actor_1, Actor actor_2)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// input validation check</span></span><br><span class="line">    ArrayList&lt;Actor&gt; result = <span class="keyword">new</span> ArrayList&lt;Actor&gt;();</span><br><span class="line">    <span class="keyword">if</span>(actor_1 == <span class="keyword">null</span> || actor_2 == <span class="keyword">null</span>) &#123;</span><br><span class="line">         <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// initialize</span></span><br><span class="line">    LinkedList&lt;Actor&gt; queue = <span class="keyword">new</span> LinkedList&lt;Actor&gt;();</span><br><span class="line">    queue.add(actor_1);</span><br><span class="line">    HashMap&lt;Actor, Actor&gt; visitedActors = <span class="keyword">new</span> HashMap&lt;Actor, Actor&gt;();</span><br><span class="line">    HashMap&lt;Movie, Boolean&gt; visitedMovies = <span class="keyword">new</span> HashMap&lt;Movie, Boolean&gt;();</span><br><span class="line">    visitedActors.put(actor_1, <span class="keyword">null</span>);</span><br><span class="line">    <span class="keyword">int</span> degree = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">        Actor cur_actor = queue.poll();</span><br><span class="line">                </span><br><span class="line">        <span class="comment">// for all the movies the cur_actor enrolled:</span></span><br><span class="line">        <span class="keyword">for</span> (Movie m : cur_actor.movies) &#123;</span><br><span class="line">            <span class="keyword">if</span> (visitedMovies.containsKey(m)) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">                    </span><br><span class="line">            <span class="comment">// if this movie we didn't visited</span></span><br><span class="line">            visitedMovies.put(m, <span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">// for all the actors in this movie:</span></span><br><span class="line">            <span class="keyword">for</span> (Actor a : m.actors) &#123;</span><br><span class="line">                <span class="keyword">if</span> (visitedActors.containsKey(a)) &#123;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// if this actor we didn't visited</span></span><br><span class="line">                visitedActors.put(a, cur_actor);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// when we find the actor_2</span></span><br><span class="line">                <span class="keyword">if</span> (a == actor_2) &#123;                         </span><br><span class="line">                     <span class="comment">// back track the path from actor_2 to actor_1:                            </span></span><br><span class="line">                     <span class="keyword">while</span> (a != <span class="keyword">null</span>) &#123;</span><br><span class="line">                            result.add(a);</span><br><span class="line">                            a = visitedActors.get(a);</span><br><span class="line">                     &#125;</span><br><span class="line">                     Collections.reverse(result);</span><br><span class="line">                     <span class="keyword">return</span> result;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                     queue.add(a);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="comment">// after each level of the graph, add one degree</span></span><br><span class="line">        degree++;</span><br><span class="line">        System.out.println(degree);             </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Graph/">Graph</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/02/01/InterviewNote7DataStructure/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Interview Note - Data Structure
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/25/InterviewNote5DP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Interview Note - Dynanmic Programming&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Chen Zhang&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme designed based on <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank">Minos</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'chenzhang';
+  
+  var disqus_url = 'http://kidchen.github.com/2015/01/29/InterviewNote6Graph/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

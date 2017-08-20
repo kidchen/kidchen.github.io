@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>kidChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Chen Zhang&apos;s personal website">
+<meta property="og:type" content="website">
+<meta property="og:title" content="kidChen">
+<meta property="og:url" content="http://kidchen.github.com/page/3/index.html">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="Chen Zhang&apos;s personal website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kidChen">
+<meta name="twitter:description" content="Chen Zhang&apos;s personal website">
+<meta name="twitter:creator" content="@zhch1990">
+  
+    <link rel="alternative" href="/atom.xml" title="kidChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57180261-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer">
+      <article id="post-InterviewNote5DP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/25/InterviewNote5DP/">Interview Note - Dynanmic Programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/25/InterviewNote5DP/" class="article-date">
+  <time datetime="2015-01-26T06:48:20.000Z" itemprop="datePublished">2015-01-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/25/InterviewNote5DP/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Dynamic-Programming"><a href="#1-Dynamic-Programming" class="headerlink" title="1. Dynamic Programming"></a>1. Dynamic Programming</h3><p>A method for solving a complex problem by breaking it down into a collection of simpler sub-problems.</p>
+<h4 id="1-1-When-to-use"><a href="#1-1-When-to-use" class="headerlink" title="1.1 When to use"></a>1.1 When to use</h4><ol>
+<li>One of the following three:<ul>
+<li>Maximum/Minimum Problem</li>
+<li>Yes or No Question</li>
+<li>Count all possible solutions</li>
+</ul>
+</li>
+<li>Can’t do sort or swap operation</li>
+</ol>
+<p><strong>Note:</strong> DP can’t return all results, it only returns max/min, yes/no or a certain value(like length, possible solutions, etc.).</p>
+<h4 id="1-2-How-to-think"><a href="#1-2-How-to-think" class="headerlink" title="1.2 How to think"></a>1.2 How to think</h4><ol>
+<li>States: what we need to store for each sub-problem (usually an array).</li>
+<li>Function: what is the relationship between each state.</li>
+<li>Intialization: what is the start of each state.</li>
+<li>Answer: what is the end of each state.</li>
+</ol>
+<p><strong>Example:</strong> <a href="http://lintcode.com/en/problem/number-triangle/">Number Triangle</a><br>We use an array <code>f[i][j]</code> to record the minimum sum from (0, 0) to (i, j). For a certain (i, j), we know it is either from (i - 1, j - 1) or (i - 1, j). So the sub-problem is to traverse all elements in the triangle and calculate all the <code>f[i][j] = min(f[i - 1][j - 1], f[i - 1][j]) + T[i]][j]</code>. The result will be the minimum one in <code>f[n - 1][0, ..., n - 1]</code>.<br>We can also do it from bottom up. First we find the minimum of each pair in the last row, then we do above similarly but from bottom up. Finally the only one element left in the array is the result we are looking for.<br>A bonus point is doing this using only <code>O(n)</code> extra space, where n is the total number of rows in the triangle. Since each time we calculate <code>f[i][j]</code>, the result is only related with <code>f[i - 1][]</code>, we can only use 1D array and update the elements in it in each for loop.<br>Here is the code from bottom up with <code>O(n)</code> space cost.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumTotal</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(triangle.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[triangle.size() + <span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> row = triangle.size() - <span class="number">1</span>; row &gt;= <span class="number">0</span>; row--) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> col = <span class="number">0</span>; col &lt;= row; col++) &#123;</span><br><span class="line">                result[col] = Math.min(result[col], result[col + <span class="number">1</span>]) + triangle.get(row).get(col);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Dynamic Programming uses extra space to remember the mid-result. So that it is more efficient than recursive searching, which may repeated calculate the same mid-result for many times. In the above example, if we do a brute force search, it cost <code>O(2^n)</code> time, where n is the height of the triangle (each row, we need to choose one from two, totally n rows). But it only costs <code>O(n^2)</code> in theoretical(m rows, each row has n elements, totally n^2) or <code>O(n)</code>, which means all numbers we only need to visit once. </p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/25/InterviewNote5DP/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-InterviewNote4LinkedList" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/24/InterviewNote4LinkedList/">Interview Note - Linked List</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/24/InterviewNote4LinkedList/" class="article-date">
+  <time datetime="2015-01-24T23:06:46.000Z" itemprop="datePublished">2015-01-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/24/InterviewNote4LinkedList/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Introduce-Dummy-Node"><a href="#1-Introduce-Dummy-Node" class="headerlink" title="1. Introduce Dummy Node"></a>1. Introduce Dummy Node</h3><p>When the head of the target list we want to return may be different from the original given list, we can use a dummy node linked to the result so that we can get what we want by calling <code>dummy.next</code>.</p>
+<p><a href="http://lintcode.com/problem/remove-duplicates-from-sorted-list-ii">Remove Duplicates from Sorted List II</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode pre = dummy;</span><br><span class="line">        ListNode cur = head;</span><br><span class="line">        <span class="keyword">int</span> dup = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(cur != <span class="keyword">null</span> &amp;&amp; cur.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cur.val == cur.next.val) &#123;</span><br><span class="line">                dup = cur.val;</span><br><span class="line">                <span class="keyword">while</span>(cur.val == dup) &#123;</span><br><span class="line">                    cur = cur.next;</span><br><span class="line">                    <span class="comment">// if the rest of elements are all the same</span></span><br><span class="line">                    <span class="keyword">if</span>(cur == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> dummy.next;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pre.next = cur;</span><br><span class="line">                pre = pre.next;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">                <span class="comment">// add null to pre.next: in case the rest of elements are the same and returned above</span></span><br><span class="line">                pre.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// add the last element (since cur.next != null skip this element)</span></span><br><span class="line">        pre.next = cur;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://lintcode.com/problem/reverse-linked-list-ii">Reverse Linked List II</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// find the m position node</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        ListNode pre = dummy;</span><br><span class="line">        <span class="keyword">while</span>(count &lt; m) &#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// do the reverse: pre-&gt; reverse[first-&gt;cur-&gt;next] ...</span></span><br><span class="line">        ListNode first = pre.next;</span><br><span class="line">        ListNode cur = pre.next.next;</span><br><span class="line">        <span class="keyword">while</span>(count &lt; n) &#123;</span><br><span class="line">            ListNode next = cur.next;</span><br><span class="line">            cur.next = pre.next;</span><br><span class="line">            pre.next = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">if</span>(count == n) &#123;</span><br><span class="line">                first.next = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Similar Problems:</strong><br><a href="http://lintcode.com/problem/partition-list">Partition List</a><br><a href="https://oj.leetcode.com/problems/insertion-sort-list/">Insertion Sort List</a><br><a href="https://oj.leetcode.com/problems/reverse-nodes-in-k-group/">Reverse Nodes in k-group</a><br><a href="http://lintcode.com/problem/remove-node-in-binary-search-tree">Remove Node in Binary Search Tree</a><br><a href="http://lintcode.com/problem/copy-list-with-random-pointer">Copy List with Random Pointer</a><br><a href="https://oj.leetcode.com/problems/swap-nodes-in-pairs/">Swap Nodes in pairs</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/24/InterviewNote4LinkedList/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-InterviewNote3Tree" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/23/InterviewNote3Tree/">Interview Note - Binary Tree</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/23/InterviewNote3Tree/" class="article-date">
+  <time datetime="2015-01-23T22:13:40.000Z" itemprop="datePublished">2015-01-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/23/InterviewNote3Tree/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Binary-Tree-DFS-Traversal"><a href="#1-Binary-Tree-DFS-Traversal" class="headerlink" title="1. Binary Tree DFS Traversal"></a>1. Binary Tree DFS Traversal</h3><h4 id="1-1-Recursion"><a href="#1-1-Recursion" class="headerlink" title="1.1 Recursion"></a>1.1 Recursion</h4><p>This method will cost <code>O(n)</code> time with no extra space. The space is assigned by system(which could be <code>O(1)</code> or <code>O(h)</code>, h is the height of the tree).<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    helper(root, result);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root, ArrayList&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    result.add(root.val);</span><br><span class="line">    helper(root.left, result);</span><br><span class="line">    helper(root.right, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2-Iteration"><a href="#1-2-Iteration" class="headerlink" title="1.2 Iteration"></a>1.2 Iteration</h4><p>Use a stack to store the nodes. Pay attention to the order of storing. We store the right subtree node before the left one, so that we can get the preorder nodes when pop from the stack.<br>This method will cost <code>O(n)</code> time with <code>O(h)</code> extra space for the stack.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</span><br><span class="line">            TreeNode cur = stack.pop();</span><br><span class="line">            result.add(cur.val);</span><br><span class="line">            <span class="keyword">if</span>(cur.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(cur.right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(cur.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(cur.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/23/InterviewNote3Tree/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BinaryTree/">BinaryTree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Divide-Conquer/">Divide&Conquer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MergeSort/">MergeSort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QuickSort/">QuickSort</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-InterviewNote2Search" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/22/InterviewNote2Search/">Interview Note - Binary Search &amp; Sorted Array</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/22/InterviewNote2Search/" class="article-date">
+  <time datetime="2015-01-23T03:13:12.000Z" itemprop="datePublished">2015-01-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/22/InterviewNote2Search/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h3><p>For a given sorted array (ascending order) and a target number, find the first index of this number in O(log n) time complexity.<br>If the target number does not exist in the array, return -1.<br><strong>Example:</strong><br>If the array is [1, 2, 3, 3, 4, 5, 10], for given target 3, return 2.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(start &lt; end) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt;= target) &#123;</span><br><span class="line">                end = mid;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> nums[start] == target ? start : -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Key Points:</strong></p>
+<ol>
+<li><code>while(start &lt; end)</code>: when start and end are overlapped each other, break. At this moment, we can return start or end. But it is different when we need to return the index before or after the target(see point 3).</li>
+<li><code>int mid = start + (end - start) / 2</code>: in order to avoid overflow of <code>start + end</code>, we need to do a little trick here.</li>
+<li><code>while loop</code>: in the while loop, there are two different needs:</li>
+</ol>
+<ul>
+<li>return the index of the target: as the example above.</li>
+<li>return the one before(example below)/after the target:<br><a href="https://oj.leetcode.com/problems/search-insert-position/">Search Insert Position</a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(start &lt;= end) &#123;</span><br><span class="line">    <span class="keyword">int</span> mid = start + (end - start) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(A[mid] == target) &#123;</span><br><span class="line">        <span class="keyword">return</span> mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(A[mid] &lt; target) &#123;</span><br><span class="line">        start = mid + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        end = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Here, we need to use <code>while(start &lt;= end)</code> so that when we break the loop, two pointers are at two different(but neighbored) positions. Besides, if we want to return the one before the index, we return <code>start</code>, otherwise we return <code>end</code>.</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/22/InterviewNote2Search/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BinarySearch/">BinarySearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SortedArray/">SortedArray</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-InterviewNoteIntro" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/21/InterviewNoteIntro/">Interview Note - Intro</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/21/InterviewNoteIntro/" class="article-date">
+  <time datetime="2015-01-22T07:05:22.000Z" itemprop="datePublished">2015-01-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/21/InterviewNoteIntro/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Coding-Style"><a href="#Coding-Style" class="headerlink" title="Coding Style"></a>Coding Style</h2><ol>
+<li>Leave blank space around each operations</li>
+<li>Give meaningful names to parameters</li>
+<li>Add space line between two logic blocks</li>
+</ol>
+<p>For example, <a href="https://oj.leetcode.com/problems/implement-strstr/">Implement strStr()</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(haystack.length() &lt; needle.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(haystack == <span class="keyword">null</span> || needle == <span class="keyword">null</span> || needle.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> haystack;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= haystack.length() - needle.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">boolean</span> find = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; needle.length(); j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(haystack.charAt(i + j) != needle.charAt(j)) &#123;</span><br><span class="line">                    find = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(find == <span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> haystack.substring(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Tips:</strong> A well-known algorithm to solve this problem is using KMP. This method can run in O(m+n) time. But usually, during a 45 minutes interview, complete this O(m*n) method is enough. So, understanding what the point the interviewer asks is very important.</p>
+<p>Think it in this way. <em>If I were the interview</em>:<br>This guy may be my potential colleague. Is there any bug here? Because if there are many bugs, I will probably debug a lot for him when we are in a team.<br>Is he talktive? Well, I will give you limited conditions about the problem and I hope you can ask me for more details. Also, to every question, pay attention to the boundry condition.</p>
+<h2 id="When-we-solve-a-coding-problem"><a href="#When-we-solve-a-coding-problem" class="headerlink" title="When we solve a coding problem"></a>When we solve a coding problem</h2><ol>
+<li>Pay attention to the boundry condition</li>
+<li>Do communication during the writing part</li>
+<li>When finished coding, do a test case no matter the interviewer request or not</li>
+</ol>
+<h2 id="Permutations-Problems"><a href="#Permutations-Problems" class="headerlink" title="Permutations Problems"></a>Permutations Problems</h2><p><a href="https://oj.leetcode.com/problems/subsets/">Subsets</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] S) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; subset = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        Arrays.sort(S);</span><br><span class="line">        helper(result, subset, <span class="number">0</span>, S);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result, ArrayList&lt;Integer&gt; subset, <span class="keyword">int</span> len, <span class="keyword">int</span>[] S)</span> </span>&#123;</span><br><span class="line">        result.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(subset));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = len; i &lt; S.length; i++) &#123;</span><br><span class="line">            subset.add(S[i]);</span><br><span class="line">            helper(result, subset,i + <span class="number">1</span>, S);</span><br><span class="line">            subset.remove(subset.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Similar Problems:<br><a href="https://oj.leetcode.com/problems/subsets-ii/">SubsetsII</a><br><a href="https://oj.leetcode.com/problems/permutations/">Permutations</a><br><a href="https://oj.leetcode.com/problems/permutations-ii/">PermutationsII</a><br><a href="https://oj.leetcode.com/problems/combination-sum/">CombinationSum</a><br><a href="https://oj.leetcode.com/problems/letter-combinations-of-a-phone-number/">Letter Combination of a Phone Number</a><br><a href="https://oj.leetcode.com/problems/palindrome-partitioning/">Palindrome Partitioning</a><br><a href="https://oj.leetcode.com/problems/restore-ip-addresses/">Restore IP address</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/21/InterviewNoteIntro/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodingStyle/">CodingStyle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Permutations/">Permutations</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      </nav>
+    </section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Chen Zhang&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme designed based on <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank">Minos</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'chenzhang';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

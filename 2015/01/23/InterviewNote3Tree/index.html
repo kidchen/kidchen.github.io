@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Interview Note - Binary Tree - kidChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. Binary Tree DFS Traversal1.1 RecursionThis method will cost O(n) time with no extra space. The space is assigned by system(which could be O(1) or O(h), h is the height of the tree).1234567891011121">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Note - Binary Tree">
+<meta property="og:url" content="http://kidchen.github.com/2015/01/23/InterviewNote3Tree/index.html">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="1. Binary Tree DFS Traversal1.1 RecursionThis method will cost O(n) time with no extra space. The space is assigned by system(which could be O(1) or O(h), h is the height of the tree).1234567891011121">
+<meta property="og:updated_time" content="2016-03-10T09:22:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Interview Note - Binary Tree">
+<meta name="twitter:description" content="1. Binary Tree DFS Traversal1.1 RecursionThis method will cost O(n) time with no extra space. The space is assigned by system(which could be O(1) or O(h), h is the height of the tree).1234567891011121">
+<meta name="twitter:creator" content="@zhch1990">
+  
+    <link rel="alternative" href="/atom.xml" title="kidChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57180261-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-InterviewNote3Tree" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Interview Note - Binary Tree
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/23/InterviewNote3Tree/" class="article-date">
+  <time datetime="2015-01-23T22:13:40.000Z" itemprop="datePublished">2015-01-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/23/InterviewNote3Tree/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Binary-Tree-DFS-Traversal"><a href="#1-Binary-Tree-DFS-Traversal" class="headerlink" title="1. Binary Tree DFS Traversal"></a>1. Binary Tree DFS Traversal</h3><h4 id="1-1-Recursion"><a href="#1-1-Recursion" class="headerlink" title="1.1 Recursion"></a>1.1 Recursion</h4><p>This method will cost <code>O(n)</code> time with no extra space. The space is assigned by system(which could be <code>O(1)</code> or <code>O(h)</code>, h is the height of the tree).<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    ArrayList&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    helper(root, result);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root, ArrayList&lt;Integer&gt; result)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    result.add(root.val);</span><br><span class="line">    helper(root.left, result);</span><br><span class="line">    helper(root.right, result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-2-Iteration"><a href="#1-2-Iteration" class="headerlink" title="1.2 Iteration"></a>1.2 Iteration</h4><p>Use a stack to store the nodes. Pay attention to the order of storing. We store the right subtree node before the left one, so that we can get the preorder nodes when pop from the stack.<br>This method will cost <code>O(n)</code> time with <code>O(h)</code> extra space for the stack.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!stack.isEmpty()) &#123;</span><br><span class="line">            TreeNode cur = stack.pop();</span><br><span class="line">            result.add(cur.val);</span><br><span class="line">            <span class="keyword">if</span>(cur.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(cur.right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(cur.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(cur.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h4 id="1-3-Divide-amp-Conquer"><a href="#1-3-Divide-amp-Conquer" class="headerlink" title="1.3 Divide &amp; Conquer"></a>1.3 Divide &amp; Conquer</h4><p>The different between this method and the recursion one is the return type: this method returns an arraylist, but the recursion method doesn’t return anything. This method will cost <code>O(n)</code> time with <code>O(n)</code> space.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">preorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;Integer&gt; result = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// divide</span></span><br><span class="line">        ArrayList&lt;Integer&gt; leftSubtree = preorderTraversal(root.left);</span><br><span class="line">        ArrayList&lt;Integer&gt; rightSubtree = preorderTraversal(root.right);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// conquer</span></span><br><span class="line">        result.add(root.val);</span><br><span class="line">        result.addAll(leftSubtree);</span><br><span class="line">        result.addAll(rightSubtree);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Divide &amp; Conquer method is useful in sorting algorithm.</p>
+<h6 id="1-3-1-Quick-Sort"><a href="#1-3-1-Quick-Sort" class="headerlink" title="1.3.1 Quick Sort"></a>1.3.1 Quick Sort</h6><p>This is the most useful sorting algorithm in industry. Its average time complexity is <code>O(nlogn)</code>, but in worst case, it could be <code>O(n^2)</code> when the pivot we found is not ideal. This algorithm is in-place(no extra space needs) but not stable(<em>stable</em>: if after sorting [2,2’,1,1’], we get[1,1’,2,2’], we call it stable, otherwise it is not stable).<br>Related Problems:<br><a href="http://lintcode.com/en/problem/partition-array/" target="_blank" rel="external">Partition Array</a><br><a href="http://lintcode.com/problem/sort-colors-ii" target="_blank" rel="external">Sort Color II</a><br><a href="http://lintcode.com/problem/median" target="_blank" rel="external">Median</a></p>
+<h6 id="1-3-2-Merge-Sort"><a href="#1-3-2-Merge-Sort" class="headerlink" title="1.3.2 Merge Sort"></a>1.3.2 Merge Sort</h6><p>This algorithm costs <code>O(nlogn)</code> time and <code>O(n)</code> space. Although it is a stable algorithm, the space costs and the “move”(move the sorted result from temp space to the original position) step make it not that useful like quick sort.<br>Related Problems:<br><a href="http://lintcode.com/problem/merge-sorted-array-ii" target="_blank" rel="external">Merge sorted array II</a><br><a href="http://lintcode.com/en/problem/merge-k-sorted-lists/" target="_blank" rel="external">Merge k sorted lists</a></p>
+<p><strong>Similar Problems</strong>:<br><a href="http://lintcode.com/problem/maximum-depth-of-binary-tree" target="_blank" rel="external">Maximum Depth of the Binary Tree</a><br><a href="http://lintcode.com/problem/balanced-binary-tree" target="_blank" rel="external">Balanced Binary Tree</a><br><a href="http://lintcode.com/problem/binary-tree-maximum-path-sum" target="_blank" rel="external">Binary Tree Maximum Path Sum</a><br><a href="http://lintcode.com/problem/lowest-common-ancestor" target="_blank" rel="external">Lowest Common Ancestor</a><br><a href="http://lintcode.com/problem/serialization-and-deserialization-of-binary-tree" target="_blank" rel="external">Serialization and Deserialization of Binary Tree</a></p>
+<h3 id="2-Binary-Tree-BFS-Traversal"><a href="#2-Binary-Tree-BFS-Traversal" class="headerlink" title="2. Binary Tree BFS Traversal"></a>2. Binary Tree BFS Traversal</h3><p>Use a queue to store current degree(depth) of the nodes and traverse all the degree.<br><strong>Example:</strong><br><a href="http://lintcode.com/problem/binary-tree-level-order-traversal" target="_blank" rel="external">Binary Tree Level Order Traversal</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LinkedList&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; level = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        queue.add(root);</span><br><span class="line">        <span class="keyword">int</span> lastNum = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> curNum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            TreeNode cur = queue.poll();</span><br><span class="line">            level.add(cur.val);</span><br><span class="line">            lastNum--;</span><br><span class="line">            <span class="keyword">if</span>(cur.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">                queue.add(cur.left);</span><br><span class="line">                curNum++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(cur.right != <span class="keyword">null</span>) &#123;</span><br><span class="line">                queue.add(cur.right);</span><br><span class="line">                curNum++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(lastNum == <span class="number">0</span>) &#123;</span><br><span class="line">                lastNum = curNum;</span><br><span class="line">                curNum = <span class="number">0</span>;</span><br><span class="line">                result.add(level);</span><br><span class="line">                level = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-Binary-Search-Tree"><a href="#3-Binary-Search-Tree" class="headerlink" title="3. Binary Search Tree"></a>3. Binary Search Tree</h3><p><a href="http://lintcode.com/problem/remove-node-in-binary-search-tree" target="_blank" rel="external">Remove Node in a BST</a>:</p>
+<ol>
+<li>Find the node we need to remove</li>
+<li>Find the minimum node in the right subtree (or the maximum node in the left subtree)</li>
+<li>Replace the node with the minimum node in the right subtree (or the maximum node in the left subtree)<br>Replace:<br>If <code>node.right == null</code>: replace the node with its left child(<code>parent.child = node.left</code>)<br>Else if node has right child: replace the node with the smallest one that in its right subtree. To do that, we keep two nodes(<code>temp</code> and <code>father</code>), tracking to find the smallest node and replace it.</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">removeNode</span><span class="params">(TreeNode root, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TreeNode dummy = <span class="keyword">new</span> TreeNode(<span class="number">0</span>);</span><br><span class="line">        dummy.left = root;</span><br><span class="line">        TreeNode parent = find(root, value, dummy);</span><br><span class="line">        TreeNode node;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(parent.left != <span class="keyword">null</span> &amp;&amp; parent.left.val == value) &#123;</span><br><span class="line">            node = parent.left;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(parent.right != <span class="keyword">null</span> &amp;&amp; parent.right.val == value) &#123;</span><br><span class="line">            node = parent.right;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> dummy.left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        remove(node, parent);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.left;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">find</span><span class="params">(TreeNode root, <span class="keyword">int</span> value, TreeNode parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> parent;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(root.val == value) &#123;</span><br><span class="line">            <span class="keyword">return</span> parent;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(root.val &lt; value) &#123;</span><br><span class="line">            <span class="keyword">return</span> find(root.right, value, root);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> find(root.left, value, root);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(TreeNode node, TreeNode parent)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(node.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(parent.left == node) &#123;</span><br><span class="line">                parent.left = node.left;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.right = node.left;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            TreeNode temp = node.right;</span><br><span class="line">            TreeNode father = node;</span><br><span class="line">            <span class="keyword">while</span>(temp.left != <span class="keyword">null</span>) &#123;</span><br><span class="line">                father = temp;</span><br><span class="line">                temp = temp.left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(father.right == temp) &#123;</span><br><span class="line">                father.right = temp.right;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                father.left = temp.right;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(parent.left == node) &#123;</span><br><span class="line">                parent.left = temp;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                parent.right = temp;</span><br><span class="line">            &#125;</span><br><span class="line">            temp.left = node.left;</span><br><span class="line">            temp.right = node.right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Similar Problems:</strong><br><a href="http://lintcode.com/problem/insert-node-in-a-binary-search-tree" target="_blank" rel="external">Insert Node in a BST</a><br><a href="http://lintcode.com/problem/validate-binary-search-tree" target="_blank" rel="external">Validate BST</a><br><a href="http://lintcode.com/problem/search-range-in-binary-search-tree" target="_blank" rel="external">Search Range in BST</a><br><a href="http://lintcode.com/problem/implement-iterator-of-binary-search-tree" target="_blank" rel="external">Implement Iterator of BST</a></p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BinaryTree/">BinaryTree</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Divide-Conquer/">Divide&Conquer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MergeSort/">MergeSort</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/QuickSort/">QuickSort</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/24/InterviewNote4LinkedList/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Interview Note - Linked List
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/22/InterviewNote2Search/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Interview Note - Binary Search &amp; Sorted Array&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Chen Zhang&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme designed based on <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank">Minos</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'chenzhang';
+  
+  var disqus_url = 'http://kidchen.github.com/2015/01/23/InterviewNote3Tree/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

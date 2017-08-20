@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Interview Note - Linked List - kidChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. Introduce Dummy NodeWhen the head of the target list we want to return may be different from the original given list, we can use a dummy node linked to the result so that we can get what we want by">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Note - Linked List">
+<meta property="og:url" content="http://kidchen.github.com/2015/01/24/InterviewNote4LinkedList/index.html">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="1. Introduce Dummy NodeWhen the head of the target list we want to return may be different from the original given list, we can use a dummy node linked to the result so that we can get what we want by">
+<meta property="og:updated_time" content="2016-03-10T09:22:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Interview Note - Linked List">
+<meta name="twitter:description" content="1. Introduce Dummy NodeWhen the head of the target list we want to return may be different from the original given list, we can use a dummy node linked to the result so that we can get what we want by">
+<meta name="twitter:creator" content="@zhch1990">
+  
+    <link rel="alternative" href="/atom.xml" title="kidChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57180261-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-InterviewNote4LinkedList" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Interview Note - Linked List
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/24/InterviewNote4LinkedList/" class="article-date">
+  <time datetime="2015-01-24T23:06:46.000Z" itemprop="datePublished">2015-01-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/24/InterviewNote4LinkedList/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-Introduce-Dummy-Node"><a href="#1-Introduce-Dummy-Node" class="headerlink" title="1. Introduce Dummy Node"></a>1. Introduce Dummy Node</h3><p>When the head of the target list we want to return may be different from the original given list, we can use a dummy node linked to the result so that we can get what we want by calling <code>dummy.next</code>.</p>
+<p><a href="http://lintcode.com/problem/remove-duplicates-from-sorted-list-ii" target="_blank" rel="external">Remove Duplicates from Sorted List II</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">deleteDuplicates</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode pre = dummy;</span><br><span class="line">        ListNode cur = head;</span><br><span class="line">        <span class="keyword">int</span> dup = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(cur != <span class="keyword">null</span> &amp;&amp; cur.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cur.val == cur.next.val) &#123;</span><br><span class="line">                dup = cur.val;</span><br><span class="line">                <span class="keyword">while</span>(cur.val == dup) &#123;</span><br><span class="line">                    cur = cur.next;</span><br><span class="line">                    <span class="comment">// if the rest of elements are all the same</span></span><br><span class="line">                    <span class="keyword">if</span>(cur == <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> dummy.next;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                pre.next = cur;</span><br><span class="line">                pre = pre.next;</span><br><span class="line">                cur = cur.next;</span><br><span class="line">                <span class="comment">// add null to pre.next: in case the rest of elements are the same and returned above</span></span><br><span class="line">                pre.next = <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// add the last element (since cur.next != null skip this element)</span></span><br><span class="line">        pre.next = cur;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://lintcode.com/problem/reverse-linked-list-ii" target="_blank" rel="external">Reverse Linked List II</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span><span class="params">(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// find the m position node</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        dummy.next = head;</span><br><span class="line">        ListNode pre = dummy;</span><br><span class="line">        <span class="keyword">while</span>(count &lt; m) &#123;</span><br><span class="line">            pre = pre.next;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// do the reverse: pre-&gt; reverse[first-&gt;cur-&gt;next] ...</span></span><br><span class="line">        ListNode first = pre.next;</span><br><span class="line">        ListNode cur = pre.next.next;</span><br><span class="line">        <span class="keyword">while</span>(count &lt; n) &#123;</span><br><span class="line">            ListNode next = cur.next;</span><br><span class="line">            cur.next = pre.next;</span><br><span class="line">            pre.next = cur;</span><br><span class="line">            cur = next;</span><br><span class="line">            count++;</span><br><span class="line">            <span class="keyword">if</span>(count == n) &#123;</span><br><span class="line">                first.next = next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Similar Problems:</strong><br><a href="http://lintcode.com/problem/partition-list" target="_blank" rel="external">Partition List</a><br><a href="https://oj.leetcode.com/problems/insertion-sort-list/" target="_blank" rel="external">Insertion Sort List</a><br><a href="https://oj.leetcode.com/problems/reverse-nodes-in-k-group/" target="_blank" rel="external">Reverse Nodes in k-group</a><br><a href="http://lintcode.com/problem/remove-node-in-binary-search-tree" target="_blank" rel="external">Remove Node in Binary Search Tree</a><br><a href="http://lintcode.com/problem/copy-list-with-random-pointer" target="_blank" rel="external">Copy List with Random Pointer</a><br><a href="https://oj.leetcode.com/problems/swap-nodes-in-pairs/" target="_blank" rel="external">Swap Nodes in pairs</a></p>
+<a id="more"></a>
+<h3 id="2-Basic-Operations"><a href="#2-Basic-Operations" class="headerlink" title="2. Basic Operations"></a>2. Basic Operations</h3><ol>
+<li>Insert a Node in sorted List</li>
+<li><a href="http://lintcode.com/problem/remove-nth-node-from-end-of-list" target="_blank" rel="external">Remove a Node from Linked List</a></li>
+<li><a href="http://lintcode.com/problem/reverse-linked-list" target="_blank" rel="external">Reverse a Linked List</a></li>
+<li><a href="http://lintcode.com/problem/merge-two-sorted-lists" target="_blank" rel="external">Merge Two Sorted Lists</a></li>
+<li><a href="http://lintcode.com/problem/sort-list" target="_blank" rel="external">Sort List</a>:<br>Define a <code>ListNode separate(ListNode head)</code> and a <code>ListNode merge(ListNode l1, ListNode l2)</code> and do a merge sort. In the return statement (<code>return merge(separate(head1), separate(head2))</code>) of the separate method, we do the recursion until there is only one element left, do the merge method so that we can get sorted lists.</li>
+<li>Find the middle of a linked list:<br>Use a fast pointer and a slow pointer to find the middle element. It is also used in finding <a href="http://lintcode.com/problem/linked-list-cycle-ii" target="_blank" rel="external">list cycle</a>, or <a href="http://lintcode.com/problem/reorder-list" target="_blank" rel="external">Reorder List</a>.</li>
+</ol>
+<p><strong>Example:</strong> <a href="http://lintcode.com/problem/merge-k-sorted-lists" target="_blank" rel="external">Merge k Sorted Lists</a></p>
+<h6 id="Solution-1-Use-Heap-PriorityQueue"><a href="#Solution-1-Use-Heap-PriorityQueue" class="headerlink" title="Solution 1: Use Heap(PriorityQueue)"></a>Solution 1: Use Heap(PriorityQueue)</h6><p>We maintain a heap (ATTENTION: <code>compare(o1, o2)</code>, return neg(o1 &lt; o2), 0 (o1 == o2) or pos(o1 &gt; o2)). The top of the heap will be the smallest element in the heap.<br>This method will cost O(nk) for traverse all elements and O(logk) time to insert it into heap, so O(nklogk), O(k) space cost for the heap.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ArrayList&lt;ListNode&gt; lists)</span> </span>&#123;</span><br><span class="line">        PriorityQueue&lt;ListNode&gt; heap = <span class="keyword">new</span> PriorityQueue&lt;ListNode&gt;(<span class="number">11</span>, <span class="keyword">new</span> Comparator&lt;ListNode&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> l1.val - l2.val;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lists.size(); i++) &#123;</span><br><span class="line">            <span class="comment">// !!! PriorityQueue DOES NOT allow null element !!!</span></span><br><span class="line">            <span class="keyword">if</span>(lists.get(i) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                heap.offer(lists.get(i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        <span class="keyword">while</span>(heap.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            ListNode node = heap.poll();</span><br><span class="line">            cur.next = node;</span><br><span class="line">            cur = cur.next;</span><br><span class="line">            <span class="comment">// !!! PriorityQueue DOES NOT allow null element !!!</span></span><br><span class="line">            <span class="keyword">if</span>(node.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">                heap.offer(node.next);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="Solution-2-Divide-amp-Conquer-Merge-Sort"><a href="#Solution-2-Divide-amp-Conquer-Merge-Sort" class="headerlink" title="Solution 2: Divide &amp; Conquer(Merge Sort)"></a>Solution 2: Divide &amp; Conquer(Merge Sort)</h6><p>Do merge sort the lists of linked list and merge each pair of them.<br>Cost: Merge Sort costs O(klogk) * O(n)Merge = O(nklogk), space O(logk) for the recursion stack.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(List&lt;ListNode&gt; lists)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(lists == <span class="keyword">null</span> || lists.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> helper(lists, <span class="number">0</span>, lists.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Merge sort the lists</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">helper</span><span class="params">(List&lt;ListNode&gt; lists, <span class="keyword">int</span> first, <span class="keyword">int</span> last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(first &lt; last) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (first + last) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">return</span> merge(helper(lists, first, mid), helper(lists, mid + <span class="number">1</span>, last));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// we finally only return the first one</span></span><br><span class="line">        <span class="keyword">return</span> lists.get(first);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> ListNode <span class="title">merge</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l1 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l2 == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> l1;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode dummy = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        ListNode cur = dummy;</span><br><span class="line">        <span class="keyword">while</span>(l1 != <span class="keyword">null</span> &amp;&amp; l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span>(l1.val &lt; l2.val) &#123;</span><br><span class="line">                cur.next = l1;</span><br><span class="line">                l1 = l1.next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                cur.next = l2;</span><br><span class="line">                l2 = l2.next;</span><br><span class="line">            &#125;</span><br><span class="line">            cur = cur.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l1 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            cur.next = l1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l2 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            cur.next = l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Similar Problems:</strong><br><a href="http://lintcode.com/problem/convert-sorted-list-to-binary-search-tree" target="_blank" rel="external">Convert Sorted List to BST</a></p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LinkedList/">LinkedList</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/01/25/InterviewNote5DP/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Interview Note - Dynanmic Programming
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/23/InterviewNote3Tree/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Interview Note - Binary Tree&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Chen Zhang&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme designed based on <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank">Minos</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'chenzhang';
+  
+  var disqus_url = 'http://kidchen.github.com/2015/01/24/InterviewNote4LinkedList/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Character Encoding - ASCII, Unicode &amp; UTF-8 - kidChen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IntroductionASCIISingle byte encoding only using the bottom 7 bits(0-127). The top bit is always 0.In English, 128 symbols are enough to represent all character. But in other situations, French for ex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Character Encoding - ASCII, Unicode & UTF-8">
+<meta property="og:url" content="http://kidchen.github.com/2015/03/18/Tech150318_encode/index.html">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="IntroductionASCIISingle byte encoding only using the bottom 7 bits(0-127). The top bit is always 0.In English, 128 symbols are enough to represent all character. But in other situations, French for ex">
+<meta property="og:image" content="http://kidchen.github.com/images/ASCII.png">
+<meta property="og:updated_time" content="2016-03-10T09:23:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Character Encoding - ASCII, Unicode & UTF-8">
+<meta name="twitter:description" content="IntroductionASCIISingle byte encoding only using the bottom 7 bits(0-127). The top bit is always 0.In English, 128 symbols are enough to represent all character. But in other situations, French for ex">
+<meta name="twitter:image" content="http://kidchen.github.com/images/ASCII.png">
+<meta name="twitter:creator" content="@zhch1990">
+  
+    <link rel="alternative" href="/atom.xml" title="kidChen" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57180261-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-Tech150318_encode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Character Encoding - ASCII, Unicode &amp; UTF-8
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/03/18/Tech150318_encode/" class="article-date">
+  <time datetime="2015-03-18T08:58:11.000Z" itemprop="datePublished">2015-03-18</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Technology/">Technology</a><span>></span><a class="article-category-link" href="/categories/English/Technology/Language-Processing/">Language Processing</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/03/18/Tech150318_encode/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h3 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h3><p>Single byte encoding only using the bottom 7 bits(0-127). The top bit is always 0.<br><img src="/images/ASCII.png" alt="" title="ASCII Chart"><br>In English, 128 symbols are enough to represent all character. But in other situations, French for example, they are insufficient. So we use the top bit to represent accents so that there are up to 256 characters. ‘é’ encodes as 1000 0010(130).<br>But here comes another problem. In different languages, the same binary encoding represents different characters, such as 130 in French is é, but in Hebrew, it is Gimel(ג). Not to mention Chinese characters(more than 100 thousand). So we introduce another encoding system, unicode.</p>
+<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p>“Unicode encoding” is more properly known as UTF-16: 2 bytes per “code point”. This is the native format of strings in .NET. Values outside the Basic Multilingual Plane(BMP) are encoded as surrogate pairs. These are relatively rarely used - which is a good job, as very few developers get them right, I suspect. “Unicode” is really the character set - it is unfortunate that the term is also used as a synonym for UTF-16 in .NET and various Windows applications.<br>Unicode can be implemented by different character encodings. The most commonly used encodings are UTF-8, UTF-7 and UTF-32:<br><strong>UTF-8</strong>: <em>Variable length encoding</em>, 1-4 bytes covers every current character. ASCII values are encoded as ASCII.<br><strong>UTF-7</strong>: Usually used for mail encoding. Chances are if you think you need it and you’re not doing mail, you’re wrong. (not widely used at all.)<br><strong>UTF-32</strong>: Fixed width encoding using 4 bytes per code point. This isn’t very efficient, but makes life easier outside the BMP.</p>
+<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>UTF-8 has become the dominant character encoding for the World Wide Web. The rule of UTF-8 is:<br>(1) If this is in ASCII, UTF-8 is the same with ASCII<br>(2) For n UTF bytes(n &gt; 1), the first n bits in the first byte set as 1, the n + 1 bit sets as 0, all the first two bits in the following bytes are all 10. The rest of the bits are represented as the unicode of the character.</p>
+<table>
+<thead>
+<tr>
+<th>UTF Bytes</th>
+<th>Hexadecimal</th>
+<th>Binary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0000 0000 to 0000 007F</td>
+<td>0xxxxxxx</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0000 0080 to 0000 07FF</td>
+<td>110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0000 0800 to 0000 FFFF</td>
+<td>1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0001 0000 to 0010 FFFF</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the unicode of “严” is 4E25 (100111000100101). According to the table above, this character belongs to the third row. So its UTF-8 is E4B8A5 (11100100 10111000 10100101).<br>We can see that actually unicode is different with UTF-8. But there are some libraries that can do the convert.</p>
+<a id="more"></a>
+<h1 id="Preprocessing"><a href="#Preprocessing" class="headerlink" title="Preprocessing"></a>Preprocessing</h1><p>Read UTF-8 file:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">readUTF8</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            File fileDir = <span class="keyword">new</span> File(<span class="string">"\test.txt"</span>);</span><br><span class="line">            FileInputStream fis = <span class="keyword">new</span> FileInputStream(fileDir);</span><br><span class="line">            InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(fis, <span class="string">"UTF-8"</span>);</span><br><span class="line">            BufferedReader in = <span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line"> </span><br><span class="line">            String str;</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">while</span> ((str = in.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(str);</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            in.close();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Write UTF-8 file out:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.BufferedWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStreamWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.UnsupportedEncodingException;</span><br><span class="line"><span class="keyword">import</span> java.io.Writer;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            File fileDir = <span class="keyword">new</span> File(<span class="string">"\test.txt"</span>);</span><br><span class="line"></span><br><span class="line">            FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(fileDir);</span><br><span class="line">            OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(fos, <span class="string">"UTF-8"</span>);</span><br><span class="line">            Writer out = <span class="keyword">new</span> BufferedWriter(osw);</span><br><span class="line"> </span><br><span class="line">            out.append(<span class="string">"Website UTF-8"</span>).append(<span class="string">"\r\n"</span>);</span><br><span class="line">            out.append(<span class="string">"?? UTF-8"</span>).append(<span class="string">"\r\n"</span>);</span><br><span class="line">            out.append(<span class="string">"??????? UTF-8"</span>).append(<span class="string">"\r\n"</span>);</span><br><span class="line"> </span><br><span class="line">            out.flush();</span><br><span class="line">            out.close();</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Convert from String to byte[]:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">"some text here"</span>;</span><br><span class="line"><span class="keyword">byte</span>[] b = s.getBytes(<span class="string">"UTF-8"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>Convert from byte[] to String:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">byte</span>[] b = &#123;(<span class="keyword">byte</span>) <span class="number">99</span>, (<span class="keyword">byte</span>)<span class="number">97</span>, (<span class="keyword">byte</span>)<span class="number">116</span>&#125;;</span><br><span class="line">String s = <span class="keyword">new</span> String(b, <span class="string">"US-ASCII"</span>);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Encoding/">Encoding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/30/Update_hexo_v3_150430/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Update Hexo 3.0
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/08/InterviewNote8Questions/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Interview Note - Examples&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Chen Zhang&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> | Theme designed based on <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank">Minos</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'chenzhang';
+  
+  var disqus_url = 'http://kidchen.github.com/2015/03/18/Tech150318_encode/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
