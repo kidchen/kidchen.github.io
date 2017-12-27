@@ -11,6 +11,7 @@
 <meta property="og:url" content="http://kidchen.github.com/page/4/index.html">
 <meta property="og:site_name" content="kidChen">
 <meta property="og:description" content="Chen Zhang&apos;s personal website">
+<meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kidChen">
 <meta name="twitter:description" content="Chen Zhang&apos;s personal website">
@@ -63,13 +64,80 @@ ga('send', 'pageview');
       </nav>
       <nav id="sub-nav">
         <div id="search-form-wrap">
-          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://kidchen.github.com"></form>
         </div>
       </nav>
     </div>
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="post-InterviewNoteIntro" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/01/21/InterviewNoteIntro/">Interview Note - Intro</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/01/21/InterviewNoteIntro/" class="article-date">
+  <time datetime="2015-01-22T07:05:22.000Z" itemprop="datePublished">2015-01-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://kidchen.github.com/2015/01/21/InterviewNoteIntro/#disqus_thread" class="article-comment-link">Comments</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Coding-Style"><a href="#Coding-Style" class="headerlink" title="Coding Style"></a>Coding Style</h2><ol>
+<li>Leave blank space around each operations</li>
+<li>Give meaningful names to parameters</li>
+<li>Add space line between two logic blocks</li>
+</ol>
+<p>For example, <a href="https://oj.leetcode.com/problems/implement-strstr/" target="_blank" rel="noopener">Implement strStr()</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(haystack.length() &lt; needle.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(haystack == <span class="keyword">null</span> || needle == <span class="keyword">null</span> || needle.length() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> haystack;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= haystack.length() - needle.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">boolean</span> find = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; needle.length(); j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(haystack.charAt(i + j) != needle.charAt(j)) &#123;</span><br><span class="line">                    find = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(find == <span class="keyword">true</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> haystack.substring(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Tips:</strong> A well-known algorithm to solve this problem is using KMP. This method can run in O(m+n) time. But usually, during a 45 minutes interview, complete this O(m*n) method is enough. So, understanding what the point the interviewer asks is very important.</p>
+<p>Think it in this way. <em>If I were the interview</em>:<br>This guy may be my potential colleague. Is there any bug here? Because if there are many bugs, I will probably debug a lot for him when we are in a team.<br>Is he talktive? Well, I will give you limited conditions about the problem and I hope you can ask me for more details. Also, to every question, pay attention to the boundry condition.</p>
+<h2 id="When-we-solve-a-coding-problem"><a href="#When-we-solve-a-coding-problem" class="headerlink" title="When we solve a coding problem"></a>When we solve a coding problem</h2><ol>
+<li>Pay attention to the boundry condition</li>
+<li>Do communication during the writing part</li>
+<li>When finished coding, do a test case no matter the interviewer request or not</li>
+</ol>
+<h2 id="Permutations-Problems"><a href="#Permutations-Problems" class="headerlink" title="Permutations Problems"></a>Permutations Problems</h2><p><a href="https://oj.leetcode.com/problems/subsets/" target="_blank" rel="noopener">Subsets</a>:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; subsets(<span class="keyword">int</span>[] S) &#123;</span><br><span class="line">        ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; subset = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">        Arrays.sort(S);</span><br><span class="line">        helper(result, subset, <span class="number">0</span>, S);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(ArrayList&lt;ArrayList&lt;Integer&gt;&gt; result, ArrayList&lt;Integer&gt; subset, <span class="keyword">int</span> len, <span class="keyword">int</span>[] S)</span> </span>&#123;</span><br><span class="line">        result.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(subset));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = len; i &lt; S.length; i++) &#123;</span><br><span class="line">            subset.add(S[i]);</span><br><span class="line">            helper(result, subset,i + <span class="number">1</span>, S);</span><br><span class="line">            subset.remove(subset.size() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Similar Problems:<br><a href="https://oj.leetcode.com/problems/subsets-ii/" target="_blank" rel="noopener">SubsetsII</a><br><a href="https://oj.leetcode.com/problems/permutations/" target="_blank" rel="noopener">Permutations</a><br><a href="https://oj.leetcode.com/problems/permutations-ii/" target="_blank" rel="noopener">PermutationsII</a><br><a href="https://oj.leetcode.com/problems/combination-sum/" target="_blank" rel="noopener">CombinationSum</a><br><a href="https://oj.leetcode.com/problems/letter-combinations-of-a-phone-number/" target="_blank" rel="noopener">Letter Combination of a Phone Number</a><br><a href="https://oj.leetcode.com/problems/palindrome-partitioning/" target="_blank" rel="noopener">Palindrome Partitioning</a><br><a href="https://oj.leetcode.com/problems/restore-ip-addresses/" target="_blank" rel="noopener">Restore IP address</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/21/InterviewNoteIntro/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodingStyle/">CodingStyle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/InterviewNote/">InterviewNote</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Permutations/">Permutations</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+    
       <article id="post-The-First-Test" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -105,7 +173,7 @@ ga('send', 'pageview');
 <h3 id="Fonts"><a href="#Fonts" class="headerlink" title="Fonts:"></a>Fonts:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*Italics*</span><br><span class="line">**Bold**</span><br><span class="line">***Italics and Bold***</span><br><span class="line">~~Scratch~~</span><br><span class="line">It also works <span class="keyword">if</span> you change the star(*) into underline(_).</span><br></pre></td></tr></table></figure>
 <p><em>Italics</em>, <strong>Bold</strong>, <strong><em>Italics and Bold</em></strong>, <del>Scratch</del></p>
 <h3 id="Link"><a href="#Link" class="headerlink" title="Link:"></a>Link:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[My Website](http://kidchen.github.io/)</span><br></pre></td></tr></table></figure>
-<p><a href="http://kidchen.github.io/">My Website</a></p>
+<p><a href="http://kidchen.github.io/" target="_blank" rel="noopener">My Website</a></p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h3><p>Add “>“ before a line to express reference (add more “>“ to do nest).</p>
 <blockquote>
 <p>This is a reference.</p>
@@ -115,7 +183,7 @@ ga('send', 'pageview');
 </blockquote>
 <h3 id="Quote"><a href="#Quote" class="headerlink" title="Quote:"></a>Quote:</h3><blockquote><p>Say something.</p>
 <footer><strong>[Author A</strong><cite>Author B] [link] [source_link_title]</cite></footer></blockquote>
-<p>For more information, visit <a href="http://hexo.io/docs/tag-plugins.html">this page</a>.</p>
+<p>For more information, visit <a href="http://hexo.io/docs/tag-plugins.html" target="_blank" rel="noopener">this page</a>.</p>
 <h3 id="Different-subtitles"><a href="#Different-subtitles" class="headerlink" title="Different subtitles:"></a>Different subtitles:</h3><p>Add one to six sharps(#) and a space before the head.</p>
 <h1 id="Head1"><a href="#Head1" class="headerlink" title="Head1"></a>Head1</h1><h2 id="Head2"><a href="#Head2" class="headerlink" title="Head2"></a>Head2</h2><h3 id="Head3"><a href="#Head3" class="headerlink" title="Head3"></a>Head3</h3><h4 id="Head4"><a href="#Head4" class="headerlink" title="Head4"></a>Head4</h4><h5 id="Head5"><a href="#Head5" class="headerlink" title="Head5"></a>Head5</h5><h6 id="Head6"><a href="#Head6" class="headerlink" title="Head6"></a>Head6</h6><h3 id="Codes"><a href="#Codes" class="headerlink" title="Codes:"></a>Codes:</h3><p>Use “`“ around the inline code or use “```“ to define coding area.</p>
 <p>This is an <code>inline</code> code.</p>
@@ -146,7 +214,7 @@ ga('send', 'pageview');
 <h3 id="Miscellaneous："><a href="#Miscellaneous：" class="headerlink" title="Miscellaneous："></a>Miscellaneous：</h3><p>Use three or more “*“, “-“ or “_“ to add divide line.<br><em>Note: There is no other characters in the divide line except spaces</em></p>
 <p>Use “\“ as the escape character.</p>
 <p>Use &lt;!-- more --&gt; to add “more” button.</p>
-<p>A very nice <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">Cheat Sheet</a> for Markdown syntax.</p>
+<p>A very nice <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank" rel="noopener">Cheat Sheet</a> for Markdown syntax.</p>
         
           <p class="article-more-link">
             <a href="/2014/11/29/The-First-Test/#more">Read More</a>
@@ -254,7 +322,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>朋友们都不在身边了，喜欢热闹的人，有时不得不学会安静的一个人，慢慢思考，慢慢成长。6月2号到7月27号（暂定），56个日子，写下自己是如何度过的，毕竟，也是对自己意义不凡的一段时光。</p>
-<p><a href="https://github.com/zhch1990/InterviewPreparation.git">GitHub(InterviewPreparation)</a></p>
+<p><a href="https://github.com/zhch1990/InterviewPreparation.git" target="_blank" rel="noopener">GitHub(InterviewPreparation)</a></p>
 <p>6.2: 开始刷题啦，兴奋起来！</p>
 <p>6.3: 刷完前120题，要花两天时间按类型整理下才行啊，DP总是想不到，还有系列问题要系统的再过一遍才行。</p>
 <p>6.4: 想起来记录的时候，leetcode已经39题了，以为一天可以刷十题，但是自制力为零的我怎么可能做得到，每天做完一题就要玩点别的。杨旸说我还要不要找工作了呀，唉，是该紧张起来了才对。</p>
@@ -317,62 +385,6 @@ ga('send', 'pageview');
       
         <p>// 本文逼格颇高，熟人请慎入<br>// 说我逗比的，快command+w<br>// 最后一次机会了，小心眼瞎</p>
 <p>怎么说起。<br>以为一年的生活，不会给我什么感情，但真的到了这天，却格外泛滥。<br>去年八月来到康村，新鲜，明媚，好奇着当前，期待着未来。那个张晨没有烦恼，没有压力。转眼一年过去，许多事情摆在眼前，现在的我已经不再去回忆，不是不愿，而是不敢。<br>这一年经历太多，学会很多也放弃很多，明白了一些事，认识了一些人。庆幸的是有ECE的小伙伴们一直和我在一起，屌丝楼也吃得很嗨，赶due也不再艰难。有爱的室友和CIPA的姑娘们，感谢一路的陪伴，在我心里总有你们的位置。还有机缘巧合或是阴差阳错认识的朋友们，我珍惜每一个你，相识本来就是一种命中注定。<br>暑假来临，是时候各奔东西，人们说无论在哪里，有缘都会相聚。我信。<br>康村的五月太美，还好我遇见你。</p>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chinese/">Chinese</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oldSpace/">oldSpace</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-    
-      <article id="post-cn-20140504" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/05/04/cn-20140504/">不懂(懂了)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2014/05/04/cn-20140504/" class="article-date">
-  <time datetime="2014-05-04T07:11:27.000Z" itemprop="datePublished">2014-05-04</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/中文/">中文</a><span>></span><a class="article-category-link" href="/categories/中文/百度空间-2006-2015/">百度空间 (2006-2015)</a><span>></span><a class="article-category-link" href="/categories/中文/百度空间-2006-2015/随笔/">随笔</a>
-  </div>
-
-      
-        <div class="article-comment-link-wrap">
-          <a href="http://kidchen.github.com/2014/05/04/cn-20140504/#disqus_thread" class="article-comment-link">Comments</a>
-        </div>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>康村的春天在淅淅沥沥中终于到了，启动发春模式。</p>
-<p>今天才知道大学两个好朋友在一起了，开始还以为是开玩笑的，后来知道是真的了，为他们高兴啊！</p>
-<p>最近这些事儿一件一件的又把我推向深深的思考，这位同学，下周还有那么多due啊presentation啊final什么的都不管了么！？</p>
-<p>有个跟我认识七八年的女生，周围的朋友我的她的，都觉得我俩应该在一起，但是我一直当她是好朋友，从来没往别的方面去想，她也一直让我给她介绍对象什么的。结果周围的朋友已经看不下去了，她几个闺蜜把我叫出来让我跟她表白。这剧情还能再狗血点吗？！</p>
-<p>不懂，我该跟她交往么？可是我对她好像没感觉吧，这算是日久生情么，别坑爹了好吗，这事儿一不小心就是友尽好吗。算了反正我几个月就离开这地方了，如果我们真的应该在一起，我还会想她的吧，让时间来说话吧。</p>
-<p>啪，删你一巴掌。哇，真的不是做梦啊，这不是连续剧吗，我勒个去！！！</p>
-<p>—让时间检验的分割线—</p>
-<p>反复思索check多次，确定这是一种友情。不要问我怎么确定的，just feeling。</p>
 
       
     </div>
