@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Interview Note - Dynanmic Programming - kidChen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="Chen Zhang's personal website">
+
+
+
+<meta name="keywords" content="kidChen">
+
+
+
+    <meta name="description" content="1. Dynamic ProgrammingA method for solving a complex problem by breaking it down into a collection of simpler sub-problems. 1.1 When to use One of the following three:   Maximum&#x2F;Minimum Problem Yes or">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Note - Dynanmic Programming">
+<meta property="og:url" content="http://kidchen.github.com/2015/01/25/InterviewNote5DP/">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="1. Dynamic ProgrammingA method for solving a complex problem by breaking it down into a collection of simpler sub-problems. 1.1 When to use One of the following three:   Maximum&#x2F;Minimum Problem Yes or">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2015-01-26T06:48:20.000Z">
+<meta property="article:modified_time" content="2016-03-10T09:22:43.000Z">
+<meta property="article:author" content="Chen Zhang">
+<meta property="article:tag" content="InterviewNote">
+<meta property="article:tag" content="DP">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57180261-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-57180261-1');
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/">Home</a>
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">Tags</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Interview Note - Dynanmic Programming
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2015-01-26T06:48:20.000Z" itemprop="datePublished">Jan 25 2015</time>
+                <span class="second-date-block"> (Jan 25 2015)</span>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            8 minutes read (About 1184 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h3 id="1-Dynamic-Programming"><a href="#1-Dynamic-Programming" class="headerlink" title="1. Dynamic Programming"></a>1. Dynamic Programming</h3><p>A method for solving a complex problem by breaking it down into a collection of simpler sub-problems.</p>
+<h4 id="1-1-When-to-use"><a href="#1-1-When-to-use" class="headerlink" title="1.1 When to use"></a>1.1 When to use</h4><ol>
+<li>One of the following three:</li>
+</ol>
+<ul>
+<li>Maximum/Minimum Problem</li>
+<li>Yes or No Question</li>
+<li>Count all possible solutions</li>
+</ul>
+<ol start="2">
+<li>Can’t do sort or swap operation</li>
+</ol>
+<p><strong>Note:</strong> DP can’t return all results, it only returns max/min, yes/no or a certain value(like length, possible solutions, etc.).</p>
+<h4 id="1-2-How-to-think"><a href="#1-2-How-to-think" class="headerlink" title="1.2 How to think"></a>1.2 How to think</h4><ol>
+<li>States: what we need to store for each sub-problem (usually an array).</li>
+<li>Function: what is the relationship between each state.</li>
+<li>Intialization: what is the start of each state.</li>
+<li>Answer: what is the end of each state.</li>
+</ol>
+<p><strong>Example:</strong> <a target="_blank" rel="noopener" href="http://lintcode.com/en/problem/number-triangle/">Number Triangle</a><br>We use an array <code>f[i][j]</code> to record the minimum sum from (0, 0) to (i, j). For a certain (i, j), we know it is either from (i - 1, j - 1) or (i - 1, j). So the sub-problem is to traverse all elements in the triangle and calculate all the <code>f[i][j] = min(f[i - 1][j - 1], f[i - 1][j]) + T[i]][j]</code>. The result will be the minimum one in <code>f[n - 1][0, ..., n - 1]</code>.<br>We can also do it from bottom up. First we find the minimum of each pair in the last row, then we do above similarly but from bottom up. Finally the only one element left in the array is the result we are looking for.<br>A bonus point is doing this using only <code>O(n)</code> extra space, where n is the total number of rows in the triangle. Since each time we calculate <code>f[i][j]</code>, the result is only related with <code>f[i - 1][]</code>, we can only use 1D array and update the elements in it in each for loop.<br>Here is the code from bottom up with <code>O(n)</code> space cost.</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minimumTotal</span><span class="hljs-params">(List&lt;List&lt;Integer&gt;&gt; triangle)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(triangle.size() == <span class="hljs-number">0</span>) {</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span>[] result = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[triangle.size() + <span class="hljs-number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> row = triangle.size() - <span class="hljs-number">1</span>; row &gt;= <span class="hljs-number">0</span>; row--) {</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> col = <span class="hljs-number">0</span>; col &lt;= row; col++) {</span><br><span class="line">                result[col] = Math.min(result[col], result[col + <span class="hljs-number">1</span>]) + triangle.get(row).get(col);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-keyword">return</span> result[<span class="hljs-number">0</span>];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>Dynamic Programming uses extra space to remember the mid-result. So that it is more efficient than recursive searching, which may repeated calculate the same mid-result for many times. In the above example, if we do a brute force search, it cost <code>O(2^n)</code> time, where n is the height of the triangle (each row, we need to choose one from two, totally n rows). But it only costs <code>O(n^2)</code> in theoretical(m rows, each row has n elements, totally n^2) or <code>O(n)</code>, which means all numbers we only need to visit once. </p>
+<span id="more"></span>
+
+<h3 id="2-Category"><a href="#2-Category" class="headerlink" title="2. Category"></a>2. Category</h3><h4 id="2-1-Matrix"><a href="#2-1-Matrix" class="headerlink" title="2.1 Matrix"></a>2.1 Matrix</h4><p>Straightforward problems with usually 2D matrix. Using the first column and first row can reduce the space costs.<br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/unique-paths">Unique Path</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/unique-paths-ii">Unique Path II</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/minimum-path-sum">Minimum Path Sum</a></p>
+<h4 id="2-2-Sequence"><a href="#2-2-Sequence" class="headerlink" title="2.2 Sequence"></a>2.2 Sequence</h4><p><a target="_blank" rel="noopener" href="http://lintcode.com/problem/longest-increasing-subsequence">Longest Increasing Subsequence</a><br>DP solution: <code>O(n^2)</code> time with <code>O(n)</code> space cost.<br>The state array <code>result[i]</code> means when we make the <em>i</em>th element as the end of the subsequence, the maximum length of this sequence. The relationship is like <code>result[i] = max(result[i], result[j] + 1)</code>, where <code>result[j] + 1</code> happens when we found an increasing pair(the max length until j, and adding one to include j, which is an increasing element).<br>A very good explaination can be found <a target="_blank" rel="noopener" href="http://www.geeksforgeeks.org/longest-monotonically-increasing-subsequence-size-n-log-n/">here</a>.</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">longestIncreasingSubsequence</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(nums == <span class="hljs-keyword">null</span> || nums.length == <span class="hljs-number">0</span>) {</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">int</span>[] result = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[nums.length];</span><br><span class="line">        result[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; nums.length; i++) {</span><br><span class="line">            result[i] = <span class="hljs-number">1</span>;</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) {</span><br><span class="line">                <span class="hljs-keyword">if</span>(nums[j] &lt;= nums[i]) {</span><br><span class="line">                    result[i] = Math.max(result[i], result[j] + <span class="hljs-number">1</span>);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">int</span> length = <span class="hljs-number">1</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> res : result) {</span><br><span class="line">            length = Math.max(length, res);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> length;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Similar Problems:</strong><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/climbing-stairs">Clambing stairs</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/jump-game">Jump Game</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/jump-game-ii">Jump Game II</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/palindrome-partitioning-ii">Palindrome Partition II</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/word-segmentation">Word Segmentation</a></p>
+<h4 id="2-3-Two-sequences"><a href="#2-3-Two-sequences" class="headerlink" title="2.3 Two sequences"></a>2.3 Two sequences</h4><p><a target="_blank" rel="noopener" href="http://lintcode.com/problem/longest-common-subsequence">Longest Common Subsequence</a><br>DP: <code>O(m * n)</code> time, <code>O(m * n)</code> space.<br>The state <code>result[i][j]</code> means for the subsequence ended at i in string A and the subsequence ended at j in string B, the maximum length of the common subsequence. The equation is in two situations: if two characters are the same, update the state to <code>result[i - 1][j - 1] + 1</code>, otherwise do a comparison with <code>result[i][j - 1]</code> and <code>result[i - 1][j]</code>, which means we continue finding the same character, but so far the longest one is either in A(i,j-1) or B(i-1,j).<br>Thinking of adding the last element to the array when writing the equation may be helpful.<br>Additionally, we can reduce this solution to <a target="_blank" rel="noopener" href="https://github.com/kidchen/InterviewPreparation/blob/master/Longest%20Common%20Subsequence.java"><code>O(2n)</code> space</a>. Here we have to use two arrays to store the last row and the current one. If we only use one array, when we face matches more than once in a row, the result will be wrong, eg: [bdacde] &amp; [dceab], (find d) the first row should be [0011111], but if we use only one array, it will be [0011122].</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">longestCommonSubsequence</span><span class="hljs-params">(String A, String B)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(A.length() == <span class="hljs-number">0</span> || B.length() == <span class="hljs-number">0</span>) {</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">int</span>[][] result = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[A.length() + <span class="hljs-number">1</span>][B.length() + <span class="hljs-number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= A.length(); i++) {</span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= B.length(); j++) {</span><br><span class="line">                <span class="hljs-keyword">if</span>(A.charAt(i - <span class="hljs-number">1</span>) == B.charAt(j - <span class="hljs-number">1</span>)) {</span><br><span class="line">                    result[i][j] = result[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;</span><br><span class="line">                } <span class="hljs-keyword">else</span> {</span><br><span class="line">                    result[i][j] = Math.max(result[i][j - <span class="hljs-number">1</span>], result[i - <span class="hljs-number">1</span>][j]);</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> result[A.length()][B.length()];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Similar Problems:</strong><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/edit-distance">Edit Distance</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/distinct-subsequences">Distinct Subsequence</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/interleaving-string">Interleaving String</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/regular-expression-matching">Regular Expression Matching</a><br><a target="_blank" rel="noopener" href="https://oj.leetcode.com/problems/wildcard-matching/">Wildcard Matching</a></p>
+<h4 id="2-4-Backpack-Problem"><a href="#2-4-Backpack-Problem" class="headerlink" title="2.4 Backpack Problem"></a>2.4 Backpack Problem</h4><p><a target="_blank" rel="noopener" href="http://lintcode.com/problem/backpack">Backpack</a><br>DP: <code>O(m * n)</code> time, <code>O(m)</code> space.<br>The state result[i] means we select items so that their weight sum equals to i, the closest sum is result[i].</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">backPack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span>[] A)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">if</span>(m == <span class="hljs-number">0</span> || A == <span class="hljs-keyword">null</span> || A.length == <span class="hljs-number">0</span>) {</span><br><span class="line">            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// set an array that one size bigger than target</span></span><br><span class="line">        <span class="hljs-keyword">int</span>[] result = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[m + <span class="hljs-number">1</span>];</span><br><span class="line">        <span class="hljs-comment">// outer: select an item</span></span><br><span class="line">        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; A.length; i++) {</span><br><span class="line">            <span class="hljs-keyword">int</span> size = A[i];</span><br><span class="line">            <span class="hljs-comment">// inner: decide whether put it into the bag or not</span></span><br><span class="line">            <span class="hljs-comment">// from last to the one smaller or equals to target</span></span><br><span class="line">            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = m; j &gt;= size; j--) {</span><br><span class="line">                <span class="hljs-comment">// max(not put in, put in)</span></span><br><span class="line">                <span class="hljs-comment">// put in: previous [j-size] items and current one(size)</span></span><br><span class="line">                result[j] = Math.max(result[j], result[j - size] + size);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="hljs-keyword">return</span> result[m];</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>Similar Problems:</strong><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/backpack-ii">Backpack II</a><br><a target="_blank" rel="noopener" href="http://lintcode.com/problem/minimum-adjustment-cost">Minimum Adjustment Cost</a></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/InterviewNote/">#InterviewNote</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/DP/">#DP</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2015/01/29/InterviewNote6Graph/">Interview Note - Graph &amp; Search</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2015/01/24/InterviewNote4LinkedList/">Interview Note - Linked List</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=618cc75fc121a600121be858&amp;product=inline-share-buttons' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://kidchen.github.com/2015/01/25/InterviewNote5DP/';
+        this.page.identifier = '2015/01/25/InterviewNote5DP/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'chenzhang' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 Chen Zhang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

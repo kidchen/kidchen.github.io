@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Interview Note - Union Find - kidChen</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="Chen Zhang's personal website">
+
+
+
+<meta name="keywords" content="kidChen">
+
+
+
+    <meta name="description" content="Union FindFrom wiki:In computer science, a disjoint-set data structure, also called a union–find data structure or merge–find set, is a data structure that keeps track of a set of elements partitioned">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview Note - Union Find">
+<meta property="og:url" content="http://kidchen.github.com/2017/02/28/InterviewNoteUnionFind/">
+<meta property="og:site_name" content="kidChen">
+<meta property="og:description" content="Union FindFrom wiki:In computer science, a disjoint-set data structure, also called a union–find data structure or merge–find set, is a data structure that keeps track of a set of elements partitioned">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-03-01T05:02:40.000Z">
+<meta property="article:modified_time" content="2017-03-02T20:21:23.000Z">
+<meta property="article:author" content="Chen Zhang">
+<meta property="article:tag" content="InterviewNote">
+<meta property="article:tag" content="UnionFind">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57180261-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-57180261-1');
+</script>
+
+
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                
+                <img src="/images/logo.png" alt="" height="28">
+                
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/">Home</a>
+            
+            <a class="navbar-item "
+               href="/archives">Archives</a>
+            
+            <a class="navbar-item "
+               href="/categories">Categories</a>
+            
+            <a class="navbar-item "
+               href="/tags">Tags</a>
+            
+            <a class="navbar-item "
+               href="/about">About</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Interview Note - Union Find
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            
+                <time datetime="2017-03-01T05:02:40.000Z" itemprop="datePublished">Feb 28 2017</time>
+                <span class="second-date-block"> (Feb 28 2017)</span>
+            
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/English/">English</a><span>></span><a class="article-category-link" href="/categories/English/Interview/">Interview</a>
+        </span>
+        
+        
+        <span class="column is-narrow">
+            
+            
+            5 minutes read (About 781 words)
+        </span>
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><h3 id="Union-Find"><a href="#Union-Find" class="headerlink" title="Union Find"></a>Union Find</h3><p>From <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Disjoint-set_data_structure">wiki</a>:<br>In computer science, a <strong>disjoint-set</strong> data structure, also called a <strong>union–find</strong> data structure or <strong>merge–find</strong> set, is a data structure that keeps track of a set of elements partitioned into a number of disjoint (nonoverlapping) subsets. It supports two useful operations:<br><strong>Find</strong>: Determine which subset a particular element is in. Find typically returns an item from this set that serves as its “representative”; by comparing the result of two Find operations, one can determine whether two elements are in the same subset.<br><strong>Union</strong>: Join two subsets into a single subset.</p>
+<p><strong>Example:</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/graph-valid-tree/?tab=Description">261. Graph Valid Tree</a><br>Given <code>n</code> nodes labeled from <code>0</code> to <code>n - 1</code> and a list of undirected edges (each edge is a pair of nodes), write a function to check whether these edges make up a valid tree.</p>
+<p>For example:<br>Given <code>n = 5</code> and <code>edges = [[0, 1], [0, 2], [0, 3], [1, 4]]</code>, return <code>true</code>.<br>Given <code>n = 5</code> and <code>edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]</code>, return <code>false</code>.</p>
+<p>Hint:<br>Given <code>n = 5</code> and <code>edges = [[0, 1], [1, 2], [3, 4]]</code>, what should your return? Is this case a valid tree?<br>According to the definition of tree on Wikipedia: “a tree is an undirected graph in which any two vertices are connected by exactly one path. In other words, any connected graph without simple cycles is a tree.”</p>
+<p>Note: you can assume that no duplicate edges will appear in <code>edges</code>. Since all edges are undirected, <code>[0, 1]</code> is the same as <code>[1, 0]</code> and thus will not appear together in <code>edges</code>.</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">validTree</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span>[][] edges)</span> </span>{</span><br><span class="line">        UnionFind uf = <span class="hljs-keyword">new</span> UnionFind(n);</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; edges.length; i++) {</span><br><span class="line">            <span class="hljs-keyword">if</span> (!uf.union(edges[i][<span class="hljs-number">0</span>], edges[i][<span class="hljs-number">1</span>])) {</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">return</span> uf.size == <span class="hljs-number">1</span>;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UnionFind</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">int</span> size;</span><br><span class="line">        <span class="hljs-keyword">int</span>[] nodes;</span><br><span class="line">        </span><br><span class="line">        UnionFind(<span class="hljs-keyword">int</span> size) {</span><br><span class="line">            <span class="hljs-keyword">this</span>.size = size;</span><br><span class="line">            <span class="hljs-keyword">this</span>.nodes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[size];</span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++) {</span><br><span class="line">                nodes[i] = i;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">union</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span> </span>{</span><br><span class="line">            <span class="hljs-keyword">int</span> label_a = nodes[a];</span><br><span class="line">            <span class="hljs-keyword">int</span> label_b = nodes[b];</span><br><span class="line">            <span class="hljs-keyword">if</span> (label_a == label_b) {</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;</span><br><span class="line">            } <span class="hljs-keyword">else</span> {</span><br><span class="line">                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nodes.length; i++) {</span><br><span class="line">                    <span class="hljs-keyword">if</span> (nodes[i] == label_a) {</span><br><span class="line">                        nodes[i] = label_b;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">                size--;</span><br><span class="line">                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<span id="more"></span>
+
+<p><strong>Example:</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands-ii/?tab=Description">305. Number of Islands II</a>:<br>A 2d grid map of <code>m</code> rows and <code>n</code> columns is initially filled with water. We may perform an addLand operation which turns the water at position (row, col) into a land. Given a list of positions to operate, <strong>count the number of islands after each addLand operation</strong>. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.</p>
+<p>Example:<br>Given <code>m = 3, n = 3</code>, <code>positions = [[0,0], [0,1], [1,2], [2,1]]</code>.<br>Initially, the 2d grid <code>grid</code> is filled with water. (Assume 0 represents water and 1 represents land).<br>0 0 0<br>0 0 0<br>0 0 0<br>Operation #1: addLand(0, 0) turns the water at grid[0][0] into a land.<br>1 0 0<br>0 0 0   Number of islands = 1<br>0 0 0<br>Operation #2: addLand(0, 1) turns the water at grid[0][1] into a land.<br>1 1 0<br>0 0 0   Number of islands = 1<br>0 0 0<br>Operation #3: addLand(1, 2) turns the water at grid[1][2] into a land.<br>1 1 0<br>0 0 1   Number of islands = 2<br>0 0 0<br>Operation #4: addLand(2, 1) turns the water at grid[2][1] into a land.<br>1 1 0<br>0 0 1   Number of islands = 3<br>0 1 0<br>We return the result as an array: [1, 1, 2, 3]</p>
+<p>Challenge:<br>Can you do it in time complexity O(k log mn), where k is the length of the <code>positions</code>?</p>
+<figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>{</span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">numIslands2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span>[][] positions)</span> </span>{</span><br><span class="line">        List&lt;Integer&gt; result = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="hljs-keyword">if</span> (positions == <span class="hljs-keyword">null</span> || positions.length == <span class="hljs-number">0</span> || positions[<span class="hljs-number">0</span>].length == <span class="hljs-number">0</span>) {</span><br><span class="line">            <span class="hljs-keyword">return</span> result;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// id for each position, init with -1</span></span><br><span class="line">        <span class="hljs-keyword">int</span>[] id = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[m * n];</span><br><span class="line">        Arrays.fill(id, -<span class="hljs-number">1</span>);</span><br><span class="line">        <span class="hljs-comment">// number of islands</span></span><br><span class="line">        <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="hljs-comment">// directions</span></span><br><span class="line">        <span class="hljs-keyword">int</span>[][] directions = {{-<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">0</span>, <span class="hljs-number">1</span>}, {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>}, {<span class="hljs-number">0</span>, -<span class="hljs-number">1</span>}};</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; positions.length; i++) {</span><br><span class="line">            <span class="hljs-comment">// init this position with its own index id, and update count</span></span><br><span class="line">            <span class="hljs-keyword">int</span> index = positions[i][<span class="hljs-number">0</span>] * n + positions[i][<span class="hljs-number">1</span>];</span><br><span class="line">            id[index] = index;</span><br><span class="line">            count++;</span><br><span class="line"></span><br><span class="line">            <span class="hljs-comment">// check surroundings</span></span><br><span class="line">            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; directions.length; j++) {</span><br><span class="line">                <span class="hljs-keyword">int</span> x = positions[i][<span class="hljs-number">0</span>] + directions[j][<span class="hljs-number">0</span>];</span><br><span class="line">                <span class="hljs-keyword">int</span> y = positions[i][<span class="hljs-number">1</span>] + directions[j][<span class="hljs-number">1</span>];</span><br><span class="line">                <span class="hljs-comment">// check validation of x,y and if it is an island</span></span><br><span class="line">                <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-number">0</span> &amp;&amp; x &lt; m &amp;&amp; y &gt;= <span class="hljs-number">0</span> &amp;&amp; y &lt; n &amp;&amp; id[x * n + y] != -<span class="hljs-number">1</span>) {</span><br><span class="line">                    <span class="hljs-comment">// find the island that it's index is this neighbor island id</span></span><br><span class="line">                    <span class="hljs-keyword">int</span> originalIslandId = getOriginalIslandId(id, x * n + y);</span><br><span class="line"></span><br><span class="line">                    <span class="hljs-comment">// when the neighbor island id is different with current island, union</span></span><br><span class="line">                    <span class="hljs-comment">// union: change neighbor island (original) to current island id</span></span><br><span class="line">                    <span class="hljs-keyword">if</span> (originalIslandId != index) {</span><br><span class="line">                        id[originalIslandId] = index;</span><br><span class="line">                        count--;</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            result.add(count);</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">return</span> result;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getOriginalIslandId</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] id, <span class="hljs-keyword">int</span> i)</span> </span>{</span><br><span class="line">        <span class="hljs-comment">// in order to reduce the height of the tree, find the root</span></span><br><span class="line">        <span class="hljs-keyword">while</span> (i != id[i]) {</span><br><span class="line">            id[i] = id[id[i]];</span><br><span class="line">            i = id[i];</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-keyword">return</span> i;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>Similar Problems:</strong><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/longest-consecutive-sequence/?tab=Description">128. Longest Consecutive Sequence</a><br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-islands/?tab=Description">200. Number of Islands</a></p>
+</body></html>
+    
+    </div>
+    
+    <div class="columns is-variable is-1 is-multiline is-mobile">
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/InterviewNote/">#InterviewNote</a></span>
+    
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/UnionFind/">#UnionFind</a></span>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2017/08/20/cn-20170820/">大半流水</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2016/12/02/cn-20161202/">26</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=618cc75fc121a600121be858&amp;product=inline-share-buttons' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://kidchen.github.com/2017/02/28/InterviewNoteUnionFind/';
+        this.page.identifier = '2017/02/28/InterviewNoteUnionFind/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'chenzhang' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2021 Chen Zhang&nbsp;
+                Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> & <a
+                        target="_blank" rel="noopener" href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" target="_blank" rel="noopener" href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
