@@ -34,7 +34,7 @@ export default function Header() {
               alt="kidChen"
               width={28}
               height={28}
-              className="h-7 w-auto dark:invert"
+              className="h-7 w-auto dark:logo-dark"
             />
           </Link>
 
