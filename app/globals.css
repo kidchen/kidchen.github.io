@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Logo dark mode - invert only black/white, preserve blue */
-.logo-dark {
-  filter: invert(1) hue-rotate(180deg);
-}
-
 /* Better body typography */
 body {
   font-family: var(--font-ovo), Georgia, serif;
