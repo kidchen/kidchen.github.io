@@ -45,8 +45,8 @@ module.exports = {
             },
             pre: {
               fontFamily: 'var(--font-source-code-pro), Monaco, Consolas, monospace',
-              backgroundColor: '#1f2937',
-              color: '#f9fafb',
+              backgroundColor: '#f3f4f6',
+              color: '#1f2937',
               padding: '1rem',
               borderRadius: '0.5rem',
               overflow: 'auto',

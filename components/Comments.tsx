@@ -1,12 +1,15 @@
 'use client'
 
 import Giscus from '@giscus/react'
+import { useTheme } from '@/contexts/ThemeContext'
 
 interface CommentsProps {
   slug: string
 }
 
 export default function Comments({ slug }: CommentsProps) {
+  const { resolvedTheme } = useTheme()
+  
   // Check if we're in development mode
   const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -44,7 +47,7 @@ export default function Comments({ slug }: CommentsProps) {
           reactionsEnabled="1"
           emitMetadata="0"
           inputPosition="bottom"
-          theme="preferred_color_scheme"
+          theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
           lang="en"
           loading="lazy"
           strict="0"
@@ -53,9 +56,3 @@ export default function Comments({ slug }: CommentsProps) {
     </div>
   )
 }
-
-// To get your repo ID and category ID:
-// 1. Go to https://giscus.app/
-// 2. Enter your repo: kidchen/kidchen.github.io
-// 3. Enable Discussions in your GitHub repo settings
-// 4. Copy the generated repo ID and category ID from the giscus configuration
