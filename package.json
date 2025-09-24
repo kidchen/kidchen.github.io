@@ -7,9 +7,7 @@
     "build": "node scripts/generate-search-index.js && next build",
     "start": "next start",
     "lint": "next lint",
-    "migrate": "node scripts/migrate-content.js",
     "export": "next build",
-    "clean": "./cleanup-old-files.sh",
     "deploy": "npm run build && touch out/.nojekyll",
     "new-post": "node scripts/new-post.js"
   },

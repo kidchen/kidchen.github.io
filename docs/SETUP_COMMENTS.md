@@ -1,37 +1,31 @@
-# Setting Up Comments with Giscus
+# Comments with Giscus - ✅ CONFIGURED
 
-## Prerequisites
+## Status: ✅ Ready to Use
 
-1. **Enable GitHub Discussions** in your repository:
-   - Go to your GitHub repo: `https://github.com/kidchen/kidchen.github.io`
-   - Click **Settings** tab
-   - Scroll down to **Features** section
-   - Check **Discussions**
+Comments are now fully configured and ready to use! The Giscus integration is set up with your GitHub repository.
 
-## Configuration Steps
+## Current Configuration
 
-1. **Visit Giscus Configuration**:
-   - Go to https://giscus.app/
-   - Enter your repository: `kidchen/kidchen.github.io`
+- **Repository**: `kidchen/kidchen.github.io`
+- **Category**: Announcements
+- **Mapping**: pathname (each post gets its own discussion)
+- **Theme**: Follows system preference (light/dark)
+- **Input Position**: Bottom
+- **Reactions**: Enabled
 
-2. **Get Configuration Values**:
-   The site will generate configuration values. Update `components/Comments.tsx` with:
-   
-   ```typescript
-   <Giscus
-     repo="kidchen/kidchen.github.io"
-     repoId="YOUR_REPO_ID_HERE"        // Copy from giscus.app
-     category="General"
-     categoryId="YOUR_CATEGORY_ID_HERE" // Copy from giscus.app
-     // ... other props
-   />
-   ```
+## How It Works
 
-3. **Test Comments**:
-   - Deploy your site
-   - Visit any blog post
-   - Try leaving a comment
-   - Comments will appear as GitHub Discussions
+1. **Automatic**: Comments appear on every blog post
+2. **GitHub Integration**: Comments are stored as GitHub Discussions
+3. **Authentication**: Users sign in with GitHub to comment
+4. **Moderation**: Manage comments through your GitHub repository
+
+## Testing Comments
+
+1. **Visit any blog post** on your deployed site
+2. **Scroll to the bottom** to see the comments section
+3. **Sign in with GitHub** to leave a comment
+4. **Comments appear** both on your site and in GitHub Discussions
 
 ## Features
 

@@ -23,19 +23,19 @@ export default function Categories() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Categories</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">Categories</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {categories.map(([category, count]) => (
             <Link
               key={category}
               href={`/categories/${encodeURIComponent(category)}`}
-              className="block p-6 bg-white rounded-lg border hover:shadow-md transition-shadow"
+              className="block p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow"
             >
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
                 {category}
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 {count} post{count !== 1 ? 's' : ''}
               </p>
             </Link>
@@ -44,7 +44,7 @@ export default function Categories() {
         
         {categories.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600">No categories found.</p>
+            <p className="text-gray-600 dark:text-gray-400">No categories found.</p>
           </div>
         )}
       </div>

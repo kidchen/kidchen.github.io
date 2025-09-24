@@ -23,17 +23,17 @@ export default function Tags() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Tags</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">Tags</h1>
         
         <div className="flex flex-wrap gap-3">
           {tags.map(([tag, count]) => (
             <Link
               key={tag}
               href={`/tags/${encodeURIComponent(tag)}`}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-800 rounded-full hover:bg-blue-200 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
             >
               <span className="font-medium">#{tag}</span>
-              <span className="text-sm bg-blue-200 text-blue-700 px-2 py-0.5 rounded-full">
+              <span className="text-sm bg-blue-200 dark:bg-blue-800 text-blue-700 dark:text-blue-300 px-2 py-0.5 rounded-full">
                 {count}
               </span>
             </Link>
@@ -42,7 +42,7 @@ export default function Tags() {
         
         {tags.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600">No tags found.</p>
+            <p className="text-gray-600 dark:text-gray-400">No tags found.</p>
           </div>
         )}
       </div>

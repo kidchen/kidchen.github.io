@@ -18,6 +18,8 @@ Visit the blog at: [kidchen.github.io](https://kidchen.github.io)
 - **Clean URLs**: SEO-friendly URL structure
 - **Code Highlighting**: Syntax highlighting for technical posts
 - **Image Optimization**: Next.js Image component for optimal loading
+- **Search Functionality**: Fast client-side search with keyboard shortcuts (⌘K)
+- **Comments System**: GitHub Discussions integration with Giscus
 
 ## 📁 Project Structure
 
@@ -41,8 +43,9 @@ Visit the blog at: [kidchen.github.io](https://kidchen.github.io)
 ├── public/                # Static assets
 │   ├── images/            # Blog images and assets
 │   └── favicon.ico        # Site favicon
-├── scripts/               # Build and migration scripts
-│   └── migrate-content.js # Hexo to Next.js migration script
+├── scripts/               # Build and utility scripts
+│   ├── generate-search-index.js # Search index generation
+│   └── new-post.js        # New post creation utility
 └── types/                 # TypeScript type definitions
     └── post.ts            # Post-related types
 ```
@@ -91,9 +94,20 @@ Visit the blog at: [kidchen.github.io](https://kidchen.github.io)
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 - `npm run new-post "Title"` - Create new post with template
-- `npm run migrate` - Migrate content from Hexo (one-time use)
-- `npm run clean` - Clean up old Hexo files
 - `npm run deploy` - Build and prepare for deployment
+
+## 🔍 Search & Comments
+
+### Search Functionality
+- **Keyboard shortcut**: Press `⌘K` (Mac) or `Ctrl+K` (Windows/Linux) to open search
+- **Click search**: Use the search button in the navigation
+- **Fast search**: Client-side search across all posts, categories, and tags
+
+### Comments System
+- **GitHub Integration**: Comments powered by GitHub Discussions
+- **Authentication**: Users sign in with GitHub to comment
+- **Moderation**: Manage comments through your GitHub repository
+- **Privacy-friendly**: No tracking, uses GitHub's infrastructure
 
 ## 📖 Content Management
 

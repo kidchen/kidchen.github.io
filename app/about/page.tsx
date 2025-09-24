@@ -2,9 +2,9 @@ export default function About() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">About</h1>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8">About</h1>
         
-        <div className="prose prose-lg max-w-none">
+        <div className="prose prose-lg max-w-none dark:prose-invert">
           <p>
             I am Chen, a Chinese living in the United States. Music lover. 
             I am trying to learn Korean just because I really want to understand 
@@ -23,11 +23,11 @@ export default function About() {
           </p>
           
           <ul>
-            <li><a href="#" className="text-blue-600 hover:text-blue-800">微博</a></li>
-            <li><a href="#" className="text-blue-600 hover:text-blue-800">GitHub</a></li>
-            <li><a href="#" className="text-blue-600 hover:text-blue-800">LinkedIn</a></li>
-            <li><a href="#" className="text-blue-600 hover:text-blue-800">Instagram</a></li>
-            <li><a href="#" className="text-blue-600 hover:text-blue-800">Facebook</a></li>
+            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">微博</a></li>
+            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">GitHub</a></li>
+            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">LinkedIn</a></li>
+            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">Instagram</a></li>
+            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">Facebook</a></li>
           </ul>
           
           <p>

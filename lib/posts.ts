@@ -45,6 +45,74 @@ export function getAllPosts(): Post[] {
   })
 }
 
+// Pagination helper functions
+export function getPaginatedPosts(page: number = 1, postsPerPage: number = 10): {
+  posts: Post[]
+  totalPages: number
+  currentPage: number
+  totalPosts: number
+} {
+  const allPosts = getAllPosts()
+  const totalPosts = allPosts.length
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+  const currentPage = Math.max(1, Math.min(page, totalPages))
+  
+  const startIndex = (currentPage - 1) * postsPerPage
+  const endIndex = startIndex + postsPerPage
+  const posts = allPosts.slice(startIndex, endIndex)
+
+  return {
+    posts,
+    totalPages,
+    currentPage,
+    totalPosts
+  }
+}
+
+// Get posts for specific category with pagination
+export function getCategoryPosts(category: string, page: number = 1, postsPerPage: number = 10) {
+  const allPosts = getAllPosts().filter(post => 
+    post.categories.includes(category)
+  )
+  
+  const totalPosts = allPosts.length
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+  const currentPage = Math.max(1, Math.min(page, totalPages))
+  
+  const startIndex = (currentPage - 1) * postsPerPage
+  const endIndex = startIndex + postsPerPage
+  const posts = allPosts.slice(startIndex, endIndex)
+
+  return {
+    posts,
+    totalPages,
+    currentPage,
+    totalPosts
+  }
+}
+
+// Get posts for specific tag with pagination
+export function getTagPosts(tag: string, page: number = 1, postsPerPage: number = 10) {
+  const allPosts = getAllPosts().filter(post => 
+    post.tags.includes(tag)
+  )
+  
+  const totalPosts = allPosts.length
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
+  const currentPage = Math.max(1, Math.min(page, totalPages))
+  
+  const startIndex = (currentPage - 1) * postsPerPage
+  const endIndex = startIndex + postsPerPage
+  const posts = allPosts.slice(startIndex, endIndex)
+
+  return {
+    posts,
+    totalPages,
+    currentPage,
+    totalPosts
+  }
+}
+
 export function getPostBySlug(slug: string): Post | null {
   const posts = getAllPosts()
   return posts.find(post => post.slug === slug) || null

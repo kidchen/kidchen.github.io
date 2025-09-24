@@ -2,80 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles for better typography and code highlighting */
-.prose {
-  @apply text-gray-800;
-}
-
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
-  @apply text-gray-900 font-bold;
-}
-
-.prose h1 {
-  @apply text-3xl mb-6 mt-8;
-}
-
-.prose h2 {
-  @apply text-2xl mb-4 mt-6;
-}
-
-.prose h3 {
-  @apply text-xl mb-3 mt-5;
-}
-
-.prose p {
-  @apply mb-4 leading-relaxed;
-}
-
-.prose blockquote {
-  @apply border-l-4 border-blue-500 pl-4 italic text-gray-700 my-4;
-}
-
-.prose code {
-  @apply bg-gray-100 text-pink-600 px-1 py-0.5 rounded text-sm;
-}
-
-.prose pre {
-  @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto my-4;
-}
-
-.prose pre code {
-  @apply bg-transparent text-gray-100 p-0;
-}
-
-.prose a {
-  @apply text-blue-600 hover:text-blue-800 hover:underline;
-}
-
-.prose ul,
-.prose ol {
-  @apply mb-4 pl-6;
-}
-
-.prose li {
-  @apply mb-1;
-}
-
-.prose img {
-  @apply rounded-lg shadow-sm;
-}
-
-.prose table {
-  @apply w-full border-collapse border border-gray-300 my-4;
-}
-
-.prose th,
-.prose td {
-  @apply border border-gray-300 px-4 py-2;
-}
-
-.prose th {
-  @apply bg-gray-100 font-semibold;
+/* Better body typography */
+body {
+  font-family: var(--font-ovo), Georgia, serif;
 }
 
 /* Line clamp utility */
@@ -91,77 +20,55 @@
   @apply transition-colors duration-200;
 }
 
-/* Better body typography */
-body {
-  @apply text-gray-800 leading-relaxed;
-  font-family: var(--font-ovo), Georgia, serif;
+/* Prose dark mode improvements */
+.dark .prose {
+  @apply text-gray-300;
 }
 
-/* Improve readability */
-.prose p {
-  @apply text-gray-700 leading-7;
+.dark .prose :where(h1, h2, h3, h4, h5, h6):not(:where([class~="not-prose"] *)) {
+  @apply text-gray-100;
 }
 
-/* Better spacing for Chinese content */
-.prose :where(p):not(:where([class~="not-prose"] *)) {
-  margin-top: 1.25em;
-  margin-bottom: 1.25em;
+.dark .prose :where(p):not(:where([class~="not-prose"] *)) {
+  @apply text-gray-300;
 }
 
-/* Code styling improvements */
-.prose :where(code):not(:where([class~="not-prose"] *)) {
-  font-family: var(--font-source-code-pro), Monaco, Consolas, monospace;
-  font-size: 0.875em;
-  font-weight: 400;
+.dark .prose :where(a):not(:where([class~="not-prose"] *)) {
+  @apply text-blue-400;
 }
 
-/* Blockquote improvements */
-.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
-  font-style: normal;
-  border-left-width: 4px;
-  border-left-color: #3b82f6;
-  background-color: #eff6ff;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
+.dark .prose :where(a):not(:where([class~="not-prose"] *)):hover {
+  @apply text-blue-300;
 }
 
-/* Table improvements */
-.prose :where(table):not(:where([class~="not-prose"] *)) {
-  font-size: 0.875em;
-  line-height: 1.7142857;
+.dark .prose :where(code):not(:where([class~="not-prose"] *)) {
+  @apply bg-gray-700 text-pink-400;
 }
 
-/* Link improvements */
-.prose :where(a):not(:where([class~="not-prose"] *)) {
-  font-weight: 500;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+.dark .prose :where(pre):not(:where([class~="not-prose"] *)) {
+  @apply bg-gray-800 text-gray-100;
 }
 
-.prose :where(a):not(:where([class~="not-prose"] *)):hover {
-  border-bottom-color: currentColor;
+.dark .prose :where(pre code):not(:where([class~="not-prose"] *)) {
+  @apply bg-transparent text-gray-100;
 }
 
-/* Custom styles for code highlighting */
-pre {
-  @apply bg-gray-100 rounded-lg p-4 overflow-x-auto;
+.dark .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+  @apply border-blue-400 bg-blue-900/20 text-gray-300;
 }
 
-code {
-  @apply bg-gray-100 px-1 py-0.5 rounded text-sm;
+.dark .prose :where(th):not(:where([class~="not-prose"] *)) {
+  @apply bg-gray-700 text-gray-100 border-gray-600;
 }
 
-pre code {
-  @apply bg-transparent p-0;
+.dark .prose :where(td):not(:where([class~="not-prose"] *)) {
+  @apply border-gray-600 text-gray-300;
 }
 
-/* Custom styles for blockquotes */
-blockquote {
-  @apply border-l-4 border-blue-500 pl-4 italic text-gray-700;
+.dark .prose :where(strong):not(:where([class~="not-prose"] *)) {
+  @apply text-gray-200;
 }
 
-/* Ensure images are responsive */
-.prose img {
-  @apply max-w-full h-auto;
+.dark .prose :where(em):not(:where([class~="not-prose"] *)) {
+  @apply text-gray-300;
 }

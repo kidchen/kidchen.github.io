@@ -92,12 +92,12 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         />
         
         {/* Modal */}
-        <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-xl">
+        <div className="relative w-full max-w-2xl bg-white dark:bg-gray-800 rounded-lg shadow-xl">
           {/* Search Input */}
-          <div className="p-4 border-b">
+          <div className="p-4 border-b border-gray-200 dark:border-gray-700">
             <div className="relative">
               <svg 
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400"
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500"
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -108,7 +108,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 ref={inputRef}
                 type="text"
                 placeholder="Search posts..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -119,16 +119,16 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           {/* Results */}
           <div className="max-h-96 overflow-y-auto">
             {query.length < 2 ? (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-8 text-center text-gray-500 dark:text-gray-400">
                 Type at least 2 characters to search...
               </div>
             ) : isLoading ? (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-8 text-center text-gray-500 dark:text-gray-400">
                 <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
                 <div className="mt-2">Searching...</div>
               </div>
             ) : results.length === 0 ? (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-8 text-center text-gray-500 dark:text-gray-400">
                 No results found for "{query}"
               </div>
             ) : (
@@ -137,16 +137,16 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   <Link
                     key={post.slug}
                     href={`/posts/${post.slug}`}
-                    className="block p-3 hover:bg-gray-50 rounded-lg transition-colors"
+                    className="block p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
                     onClick={onClose}
                   >
-                    <div className="font-medium text-gray-900 mb-1">
+                    <div className="font-medium text-gray-900 dark:text-gray-100 mb-1">
                       {post.title}
                     </div>
-                    <div className="text-sm text-gray-600 mb-2">
+                    <div className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                       {post.excerpt.substring(0, 100)}...
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                    <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                       <time>{post.date}</time>
                       {post.categories.length > 0 && (
                         <>
@@ -162,8 +162,8 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           </div>
 
           {/* Footer */}
-          <div className="p-3 border-t bg-gray-50 text-xs text-gray-500 text-center">
-            Press <kbd className="px-1 py-0.5 bg-gray-200 rounded">Esc</kbd> to close
+          <div className="p-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-xs text-gray-500 dark:text-gray-400 text-center">
+            Press <kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-600 rounded">Esc</kbd> to close
           </div>
         </div>
       </div>
