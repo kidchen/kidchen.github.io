@@ -4,6 +4,7 @@ import { Source_Code_Pro } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 
 const ovo = Ovo({ 
   weight: '400',
@@ -30,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${ovo.variable} ${sourceCodePro.variable} font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors`}>
+        <GoogleAnalytics GA_MEASUREMENT_ID={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
         <ThemeProvider>
           <div className="min-h-screen flex flex-col">
             <Header />

@@ -127,9 +127,16 @@ export async function markdownToHtml(markdown: string) {
 
 // Helper function to calculate reading time
 export function calculateReadingTime(content: string): number {
-  const wordsPerMinute = 200
-  const words = content.split(/\s+/).length
-  return Math.ceil(words / wordsPerMinute)
+  // Count Chinese characters and English words separately
+  const chineseChars = (content.match(/[\u4e00-\u9fff]/g) || []).length
+  const englishWords = content.replace(/[\u4e00-\u9fff]/g, '').split(/\s+/).filter(word => word.length > 0).length
+  
+  // Reading speeds: 300 Chinese chars/min, 200 English words/min
+  const chineseReadingTime = chineseChars / 300
+  const englishReadingTime = englishWords / 200
+  
+  const totalMinutes = chineseReadingTime + englishReadingTime
+  return Math.max(1, Math.ceil(totalMinutes))
 }
 
 // Helper function to extract excerpt from content
