@@ -48,7 +48,7 @@ export default function PostCard({ post }: PostCardProps) {
       </header>
 
       {post.excerpt && (
-        <div className="text-gray-700 mb-4">
+        <div className="text-gray-700 mb-4 prose prose-sm max-w-none">
           <div dangerouslySetInnerHTML={{ __html: post.excerpt }} />
         </div>
       )}

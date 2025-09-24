@@ -7,11 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['var(--font-ovo)', 'Georgia', 'serif'],
+        'mono': ['var(--font-source-code-pro)', 'Monaco', 'Consolas', 'monospace'],
+      },
       typography: {
         DEFAULT: {
           css: {
             maxWidth: 'none',
             color: '#374151',
+            fontFamily: 'var(--font-ovo), Georgia, serif',
             a: {
               color: '#3b82f6',
               '&:hover': {
@@ -23,6 +28,12 @@ module.exports = {
             },
             'code::after': {
               content: '""',
+            },
+            code: {
+              fontFamily: 'var(--font-source-code-pro), Monaco, Consolas, monospace',
+            },
+            pre: {
+              fontFamily: 'var(--font-source-code-pro), Monaco, Consolas, monospace',
             },
           },
         },

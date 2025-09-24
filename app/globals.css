@@ -91,6 +91,58 @@
   @apply transition-colors duration-200;
 }
 
+/* Better body typography */
+body {
+  @apply text-gray-800 leading-relaxed;
+  font-family: var(--font-ovo), Georgia, serif;
+}
+
+/* Improve readability */
+.prose p {
+  @apply text-gray-700 leading-7;
+}
+
+/* Better spacing for Chinese content */
+.prose :where(p):not(:where([class~="not-prose"] *)) {
+  margin-top: 1.25em;
+  margin-bottom: 1.25em;
+}
+
+/* Code styling improvements */
+.prose :where(code):not(:where([class~="not-prose"] *)) {
+  font-family: var(--font-source-code-pro), Monaco, Consolas, monospace;
+  font-size: 0.875em;
+  font-weight: 400;
+}
+
+/* Blockquote improvements */
+.prose :where(blockquote):not(:where([class~="not-prose"] *)) {
+  font-style: normal;
+  border-left-width: 4px;
+  border-left-color: #3b82f6;
+  background-color: #eff6ff;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Table improvements */
+.prose :where(table):not(:where([class~="not-prose"] *)) {
+  font-size: 0.875em;
+  line-height: 1.7142857;
+}
+
+/* Link improvements */
+.prose :where(a):not(:where([class~="not-prose"] *)) {
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.prose :where(a):not(:where([class~="not-prose"] *)):hover {
+  border-bottom-color: currentColor;
+}
+
 /* Custom styles for code highlighting */
 pre {
   @apply bg-gray-100 rounded-lg p-4 overflow-x-auto;

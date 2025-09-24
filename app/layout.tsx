@@ -1,9 +1,19 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Ovo } from 'next/font/google'
+import { Source_Code_Pro } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const ovo = Ovo({ 
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-ovo'
+})
+
+const sourceCodePro = Source_Code_Pro({ 
+  subsets: ['latin'],
+  variable: '--font-source-code-pro'
+})
 
 export const metadata = {
   title: 'kidChen',
@@ -18,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${ovo.variable} ${sourceCodePro.variable} font-sans`}>
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow">

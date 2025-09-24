@@ -90,46 +90,117 @@ Visit the blog at: [kidchen.github.io](https://kidchen.github.io)
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
+- `npm run new-post "Title"` - Create new post with template
 - `npm run migrate` - Migrate content from Hexo (one-time use)
 - `npm run clean` - Clean up old Hexo files
 - `npm run deploy` - Build and prepare for deployment
 
 ## 📖 Content Management
 
-### Adding New Posts
+### Creating New Posts
 
-1. Create a new markdown file in the `posts/` directory:
+#### Quick Method (Recommended)
+```bash
+# Create a new post with auto-generated template
+npm run new-post "My Amazing New Post"
+
+# This creates: posts/2024-01-15-my-amazing-new-post.md
+# With proper frontmatter already filled in
+```
+
+#### Manual Method
+1. Create a new markdown file in the `posts/` directory following the naming convention:
+   ```
+   YYYY-MM-DD-post-title.md
+   ```
+
+2. Use the template from `docs/POST_TEMPLATE.md` or create with this structure:
    ```markdown
    ---
    title: "Your Post Title"
    date: "2024-01-01"
    categories: ["Technology", "Programming"]
    tags: ["nextjs", "react", "typescript"]
-   slug: "your-post-slug"
+   slug: "2024/01/01/your-post-slug"
    layout: "post"
    ---
 
-   Your post content here...
+   # Your Post Title
+
+   Your post content here using Markdown...
    ```
 
-2. The post will automatically appear on the site after rebuilding.
+3. Commit and push - GitHub Actions will automatically deploy!
 
-### Post Frontmatter
+### Post Requirements
 
-- `title`: Post title (required)
-- `date`: Publication date in YYYY-MM-DD format (required)
-- `categories`: Array of categories (optional)
-- `tags`: Array of tags (optional)
-- `slug`: Custom URL slug (optional, auto-generated from filename)
+#### Required Fields
+- `title`: Post title (string, required)
+- `date`: Publication date in "YYYY-MM-DD" format (required)
 - `layout`: Always "post" (required)
 
-### Supported Content
+#### Optional Fields
+- `categories`: Array of broad topics, e.g., `["Technology", "Programming"]`
+- `tags`: Array of specific keywords, e.g., `["nextjs", "react", "tutorial"]`
+- `slug`: Custom URL path (auto-generated if not provided)
 
-- **Markdown**: Full CommonMark support
+#### File Naming Convention
+- **Format**: `YYYY-MM-DD-post-title.md`
+- **Examples**: 
+  - `2024-01-15-my-new-post.md`
+  - `2024-03-22-cn-chinese-post.md`
+- Use hyphens instead of spaces
+- Keep it URL-friendly (lowercase, no special characters)
+
+### Content Guidelines
+
+#### Supported Markdown Features
+- **Text formatting**: Bold, italic, inline code
 - **Code blocks**: Syntax highlighting with Prism.js
 - **Images**: Place in `public/images/` and reference as `/images/filename.jpg`
 - **Links**: Both internal and external links
+- **Lists**: Ordered and unordered
+- **Tables**: GitHub Flavored Markdown tables
+- **Blockquotes**: Standard markdown blockquotes
 - **Chinese content**: Full Unicode support
+
+#### Best Practices
+- **Categories**: Use 2-3 broad topics maximum
+- **Tags**: Use 3-5 specific keywords
+- **Images**: Use descriptive alt text, supported formats: JPG, PNG, SVG, WebP
+- **Structure**: Use headings (##, ###) to organize content
+- **Links**: Use relative paths for internal links
+
+### Content Organization
+
+#### Categories vs Tags
+- **Categories**: Broad classification
+  - Examples: `["Technology"]`, `["中文", "记录"]`, `["English", "Interview"]`
+- **Tags**: Specific keywords for discoverability
+  - Examples: `["nextjs", "migration", "tutorial"]`, `["算法", "面试"]`
+
+#### Bilingual Content
+- **English posts**: Use categories like `["English", "Technology"]`
+- **Chinese posts**: Use categories like `["中文", "技术"]`
+- **Mixed content**: Fully supported with proper Unicode handling
+
+### Workflow Example
+```bash
+# 1. Create new post
+npm run new-post "Learning Next.js 14"
+
+# 2. Edit the generated file
+# posts/2024-01-15-learning-nextjs-14.md
+
+# 3. Update categories and tags as needed
+# 4. Write your content
+
+# 5. Deploy
+git add .
+git commit -m "Add new post: Learning Next.js 14"
+git push
+# 🚀 GitHub Actions automatically deploys!
+```
 
 ## 🎨 Customization
 

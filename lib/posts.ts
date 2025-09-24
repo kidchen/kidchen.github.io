@@ -51,7 +51,9 @@ export function getPostBySlug(slug: string): Post | null {
 }
 
 export async function markdownToHtml(markdown: string) {
-  const result = await remark().use(html).process(markdown)
+  const result = await remark()
+    .use(html, { sanitize: false })
+    .process(markdown)
   return result.toString()
 }
 
@@ -63,9 +65,26 @@ export function calculateReadingTime(content: string): number {
 }
 
 // Helper function to extract excerpt from content
-export function extractExcerpt(content: string, length: number = 150): string {
-  const plainText = content.replace(/<[^>]*>/g, '')
-  return plainText.length > length 
-    ? plainText.substring(0, length) + '...'
-    : plainText
+export function extractExcerpt(content: string, length: number = 200): string {
+  // Simple approach: extract plain text and format lightly
+  let plainText = content
+    .replace(/^#{1,6}\s+(.+)$/gm, '$1') // Remove header markers
+    .replace(/\*\*(.+?)\*\*/g, '$1') // Remove bold markers
+    .replace(/\*(.+?)\*/g, '$1') // Remove italic markers
+    .replace(/`(.+?)`/g, '$1') // Remove code markers
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // Convert links to text
+    .replace(/\n+/g, ' ') // Replace newlines with spaces
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim()
+  
+  if (plainText.length <= length) {
+    return plainText
+  }
+  
+  // Truncate at word boundary
+  const truncated = plainText.substring(0, length)
+  const lastSpace = truncated.lastIndexOf(' ')
+  const finalText = lastSpace > 0 ? truncated.substring(0, lastSpace) : truncated
+  
+  return finalText + '...'
 }

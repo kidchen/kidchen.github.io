@@ -2,6 +2,7 @@ import { getAllPosts, getPostBySlug, markdownToHtml } from '@/lib/posts'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import Comments from '@/components/Comments'
 
 interface PostPageProps {
   params: {
@@ -120,10 +121,22 @@ export default async function PostPage({ params }: PostPageProps) {
 
           {/* Post Content */}
           <div 
-            className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-code:text-pink-600 prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded"
+            className="prose prose-lg max-w-none 
+                       prose-headings:text-gray-900 prose-headings:font-bold
+                       prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline 
+                       prose-code:text-pink-600 prose-code:bg-gray-100 prose-code:px-1 prose-code:rounded prose-code:text-sm
+                       prose-pre:bg-gray-900 prose-pre:text-gray-100
+                       prose-blockquote:border-l-blue-500 prose-blockquote:bg-blue-50 prose-blockquote:py-2 prose-blockquote:px-4
+                       prose-img:rounded-lg prose-img:shadow-md
+                       prose-table:text-sm
+                       prose-th:bg-gray-100 prose-th:font-semibold
+                       prose-td:border-gray-300 prose-th:border-gray-300"
             dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
         </article>
+
+        {/* Comments */}
+        <Comments slug={slug} />
 
         {/* Navigation */}
         <nav className="mt-12 pt-8 border-t">
