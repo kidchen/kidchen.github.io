@@ -1,4 +1,5 @@
 import { getAllPosts } from '@/lib/posts'
+import { toPinyinSlug } from '@/lib/pinyin'
 import Link from 'next/link'
 
 export const metadata = {
@@ -29,7 +30,7 @@ export default function Categories() {
           {categories.map(([category, count]) => (
             <Link
               key={category}
-              href={`/categories/${encodeURIComponent(category)}`}
+              href={`/categories/${toPinyinSlug(category)}`}
               className="block p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow"
             >
               <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">

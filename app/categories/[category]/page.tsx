@@ -1,4 +1,5 @@
 import { getAllPosts, getCategoryPosts } from '@/lib/posts'
+import { toPinyinSlug, createPinyinMapping, findOriginalFromPinyin } from '@/lib/pinyin'
 import PostCard from '@/components/PostCard'
 import Pagination from '@/components/Pagination'
 import Link from 'next/link'
@@ -24,12 +25,16 @@ export async function generateStaticParams() {
   })
   
   return Array.from(categories).map((category) => ({
-    category: encodeURIComponent(category),
+    category: toPinyinSlug(category), // Use pinyin slug for URL
   }))
 }
 
 export async function generateMetadata({ params }: CategoryPageProps) {
-  const category = decodeURIComponent(params.category)
+  const posts = getAllPosts()
+  const categories = Array.from(new Set(posts.flatMap(post => post.categories)))
+  const categoryMapping = createPinyinMapping(categories)
+  const originalCategory = findOriginalFromPinyin(params.category, categoryMapping)
+  const category = originalCategory || params.category
   
   return {
     title: `${category} | Categories | kidChen`,
@@ -38,10 +43,18 @@ export async function generateMetadata({ params }: CategoryPageProps) {
 }
 
 export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = decodeURIComponent(params.category)
-  const { posts, totalPages, currentPage, totalPosts } = getCategoryPosts(category, 1, siteConfig.pagination.postsPerPage.category)
+  const posts = getAllPosts()
+  const categories = Array.from(new Set(posts.flatMap(post => post.categories)))
+  const categoryMapping = createPinyinMapping(categories)
+  const originalCategory = findOriginalFromPinyin(params.category, categoryMapping)
+  
+  if (!originalCategory) {
+    redirect('/categories')
+  }
+  
+  const { posts: categoryPosts, totalPages, currentPage, totalPosts } = getCategoryPosts(originalCategory, 1, siteConfig.pagination.postsPerPage.category)
 
-  if (posts.length === 0) {
+  if (categoryPosts.length === 0) {
     redirect('/categories')
   }
 
@@ -54,27 +67,34 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           <span className="mx-2">→</span>
           <Link href="/categories" className="hover:text-blue-600 dark:hover:text-blue-400">Categories</Link>
           <span className="mx-2">→</span>
-          <span className="text-gray-900 dark:text-gray-100">{category}</span>
+          <span className="text-gray-900 dark:text-gray-100">{originalCategory}</span>
         </nav>
 
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-          {category}
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
-          {totalPosts} post{totalPosts !== 1 ? 's' : ''} in this category
-        </p>
-        
-        <div className="space-y-8">
-          {posts.map((post) => (
+        {/* Category Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            Category: {originalCategory}
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            {totalPosts} {totalPosts === 1 ? 'post' : 'posts'} in this category
+          </p>
+        </div>
+
+        {/* Posts Grid */}
+        <div className="grid gap-6 mb-8">
+          {categoryPosts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
         </div>
 
-        <Pagination 
-          currentPage={currentPage}
-          totalPages={totalPages}
-          basePath={`/categories/${encodeURIComponent(category)}`}
-        />
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            basePath={`/categories/${params.category}`}
+          />
+        )}
       </div>
     </div>
   )

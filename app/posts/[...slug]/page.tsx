@@ -1,4 +1,5 @@
 import { getAllPosts, getPostBySlug, markdownToHtml } from '@/lib/posts'
+import { toPinyinSlug } from '@/lib/pinyin'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -91,7 +92,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 {post.categories.map((category, index) => (
                   <span key={category}>
                     <Link 
-                      href={`/categories/${encodeURIComponent(category)}`}
+                      href={`/categories/${toPinyinSlug(category)}`}
                       className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                     >
                       {category}

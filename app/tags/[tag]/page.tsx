@@ -1,4 +1,5 @@
 import { getAllPosts, getTagPosts } from '@/lib/posts'
+import { toPinyinSlug, createPinyinMapping, findOriginalFromPinyin } from '@/lib/pinyin'
 import PostCard from '@/components/PostCard'
 import Pagination from '@/components/Pagination'
 import Link from 'next/link'
@@ -24,12 +25,16 @@ export async function generateStaticParams() {
   })
   
   return Array.from(tags).map((tag) => ({
-    tag: encodeURIComponent(tag),
+    tag: toPinyinSlug(tag), // Use pinyin slug for URL
   }))
 }
 
 export async function generateMetadata({ params }: TagPageProps) {
-  const tag = decodeURIComponent(params.tag)
+  const posts = getAllPosts()
+  const tags = Array.from(new Set(posts.flatMap(post => post.tags)))
+  const tagMapping = createPinyinMapping(tags)
+  const originalTag = findOriginalFromPinyin(params.tag, tagMapping)
+  const tag = originalTag || params.tag
   
   return {
     title: `#${tag} | Tags | kidChen`,
@@ -38,10 +43,18 @@ export async function generateMetadata({ params }: TagPageProps) {
 }
 
 export default function TagPage({ params }: TagPageProps) {
-  const tag = decodeURIComponent(params.tag)
-  const { posts, totalPages, currentPage, totalPosts } = getTagPosts(tag, 1, siteConfig.pagination.postsPerPage.tag)
+  const posts = getAllPosts()
+  const tags = Array.from(new Set(posts.flatMap(post => post.tags)))
+  const tagMapping = createPinyinMapping(tags)
+  const originalTag = findOriginalFromPinyin(params.tag, tagMapping)
+  
+  if (!originalTag) {
+    redirect('/tags')
+  }
+  
+  const { posts: tagPosts, totalPages, currentPage, totalPosts } = getTagPosts(originalTag, 1, siteConfig.pagination.postsPerPage.tag)
 
-  if (posts.length === 0) {
+  if (tagPosts.length === 0) {
     redirect('/tags')
   }
 
@@ -54,27 +67,34 @@ export default function TagPage({ params }: TagPageProps) {
           <span className="mx-2">→</span>
           <Link href="/tags" className="hover:text-blue-600 dark:hover:text-blue-400">Tags</Link>
           <span className="mx-2">→</span>
-          <span className="text-gray-900 dark:text-gray-100">#{tag}</span>
+          <span className="text-gray-900 dark:text-gray-100">#{originalTag}</span>
         </nav>
 
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-          #{tag}
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
-          {totalPosts} post{totalPosts !== 1 ? 's' : ''} tagged with this
-        </p>
-        
-        <div className="space-y-8">
-          {posts.map((post) => (
+        {/* Tag Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            Tag: #{originalTag}
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            {totalPosts} {totalPosts === 1 ? 'post' : 'posts'} with this tag
+          </p>
+        </div>
+
+        {/* Posts Grid */}
+        <div className="grid gap-6 mb-8">
+          {tagPosts.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}
         </div>
 
-        <Pagination 
-          currentPage={currentPage}
-          totalPages={totalPages}
-          basePath={`/tags/${encodeURIComponent(tag)}`}
-        />
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            basePath={`/tags/${params.tag}`}
+          />
+        )}
       </div>
     </div>
   )

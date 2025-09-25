@@ -1,4 +1,5 @@
 import { getAllPosts } from '@/lib/posts'
+import { toPinyinSlug } from '@/lib/pinyin'
 import Link from 'next/link'
 
 export const metadata = {
@@ -29,7 +30,7 @@ export default function Tags() {
           {tags.map(([tag, count]) => (
             <Link
               key={tag}
-              href={`/tags/${encodeURIComponent(tag)}`}
+              href={`/tags/${toPinyinSlug(tag)}`}
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
             >
               <span className="font-medium">#{tag}</span>

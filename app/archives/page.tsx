@@ -1,4 +1,5 @@
 import { getPaginatedPosts } from '@/lib/posts'
+import { toPinyinSlug } from '@/lib/pinyin'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import Pagination from '@/components/Pagination'
@@ -70,7 +71,7 @@ export default function Archives() {
                         {post.categories.slice(0, 2).map(category => (
                           <Link
                             key={category}
-                            href={`/categories/${encodeURIComponent(category)}`}
+                            href={`/categories/${toPinyinSlug(category)}`}
                             className="text-xs bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded hover:bg-gray-300 dark:hover:bg-gray-600"
                           >
                             {category}

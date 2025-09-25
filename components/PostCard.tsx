@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { Post } from '@/types/post'
+import { toPinyinSlug } from '@/lib/pinyin'
 
 interface PostCardProps {
   post: Post
@@ -30,7 +31,7 @@ export default function PostCard({ post }: PostCardProps) {
               {post.categories.map((category, index) => (
                 <span key={category}>
                   <Link 
-                    href={`/categories/${encodeURIComponent(category)}`}
+                    href={`/categories/${toPinyinSlug(category)}`}
                     className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                   >
                     {category}
@@ -66,7 +67,7 @@ export default function PostCard({ post }: PostCardProps) {
             {post.tags.slice(0, 3).map((tag) => (
               <Link
                 key={tag}
-                href={`/tags/${encodeURIComponent(tag)}`}
+                href={`/tags/${toPinyinSlug(tag)}`}
                 className="inline-block bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded text-xs hover:bg-gray-200 dark:hover:bg-gray-600"
               >
                 #{tag}
