@@ -32,7 +32,7 @@ export async function generateStaticParams() {
     // Generate pages 2 and onwards (page 1 is handled by the main tag route)
     for (let page = 2; page <= totalPages; page++) {
       params.push({
-        tag: tag, // Use raw tag name
+        tag: encodeURIComponent(tag), // Use encoded tag name
         page: page.toString()
       })
     }

@@ -32,7 +32,7 @@ export async function generateStaticParams() {
     // Generate pages 2 and onwards (page 1 is handled by the main category route)
     for (let page = 2; page <= totalPages; page++) {
       params.push({
-        category: category, // Use raw category name
+        category: encodeURIComponent(category), // Use encoded category name
         page: page.toString()
       })
     }
