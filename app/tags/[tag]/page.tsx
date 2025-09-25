@@ -2,7 +2,7 @@ import { getAllPosts, getTagPosts } from '@/lib/posts'
 import PostCard from '@/components/PostCard'
 import Pagination from '@/components/Pagination'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { siteConfig } from '@/lib/config'
 
 interface TagPageProps {
@@ -42,7 +42,7 @@ export default function TagPage({ params }: TagPageProps) {
   const { posts, totalPages, currentPage, totalPosts } = getTagPosts(tag, 1, siteConfig.pagination.postsPerPage.tag)
 
   if (posts.length === 0) {
-    notFound()
+    redirect('/tags')
   }
 
   return (

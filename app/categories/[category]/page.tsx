@@ -2,7 +2,7 @@ import { getAllPosts, getCategoryPosts } from '@/lib/posts'
 import PostCard from '@/components/PostCard'
 import Pagination from '@/components/Pagination'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { siteConfig } from '@/lib/config'
 
 interface CategoryPageProps {
@@ -42,7 +42,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   const { posts, totalPages, currentPage, totalPosts } = getCategoryPosts(category, 1, siteConfig.pagination.postsPerPage.category)
 
   if (posts.length === 0) {
-    notFound()
+    redirect('/categories')
   }
 
   return (

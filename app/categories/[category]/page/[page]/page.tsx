@@ -2,7 +2,7 @@ import { getAllPosts, getCategoryPosts } from '@/lib/posts'
 import PostCard from '@/components/PostCard'
 import Pagination from '@/components/Pagination'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { siteConfig } from '@/lib/config'
 
 interface CategoryPageProps {
@@ -32,7 +32,7 @@ export async function generateStaticParams() {
     // Generate pages 2 and onwards (page 1 is handled by the main category route)
     for (let page = 2; page <= totalPages; page++) {
       params.push({
-        category: encodeURIComponent(category),
+        category: category, // Use raw category name
         page: page.toString()
       })
     }
@@ -56,13 +56,13 @@ export default function CategoryPaginatedPage({ params }: CategoryPageProps) {
   const page = parseInt(params.page)
   
   if (isNaN(page) || page < 2) {
-    notFound()
+    redirect("/")
   }
 
   const { posts, totalPages, currentPage, totalPosts } = getCategoryPosts(category, page, siteConfig.pagination.postsPerPage.category)
 
   if (posts.length === 0) {
-    notFound()
+    redirect("/")
   }
 
   return (

@@ -8,7 +8,11 @@
 }
 
 .prose :where(pre):not(:where([class~="not-prose"] *)) {
-  @apply bg-gray-100 text-gray-800;
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  overflow: auto !important;
 }
 
 .prose :where(pre code):not(:where([class~="not-prose"] *)) {
@@ -59,11 +63,14 @@ body {
 }
 
 .dark .prose :where(pre):not(:where([class~="not-prose"] *)) {
-  @apply bg-gray-800 text-gray-100;
+  background-color: #1f2937 !important;
+  color: #f9fafb !important;
 }
 
 .dark .prose :where(pre code):not(:where([class~="not-prose"] *)) {
-  @apply bg-transparent text-gray-100;
+  background-color: transparent !important;
+  color: #f9fafb !important;
+  padding: 0 !important;
 }
 
 .dark .prose :where(blockquote):not(:where([class~="not-prose"] *)) {

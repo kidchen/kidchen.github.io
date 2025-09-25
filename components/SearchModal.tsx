@@ -12,8 +12,31 @@ interface SearchModalProps {
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchablePost[]>([])
+  const [recentPosts, setRecentPosts] = useState<SearchablePost[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // Load recent posts when modal opens
+  useEffect(() => {
+    if (isOpen && recentPosts.length === 0) {
+      const loadRecentPosts = async () => {
+        try {
+          const response = await fetch('/search-index.json')
+          if (response.ok) {
+            const searchIndex: SearchablePost[] = await response.json()
+            // Get 5 most recent posts
+            const recent = searchIndex
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+              .slice(0, 5)
+            setRecentPosts(recent)
+          }
+        } catch (error) {
+          console.error('Failed to load recent posts:', error)
+        }
+      }
+      loadRecentPosts()
+    }
+  }, [isOpen, recentPosts.length])
 
   useEffect(() => {
     if (isOpen) {
@@ -119,8 +142,43 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           {/* Results */}
           <div className="max-h-96 overflow-y-auto">
             {query.length < 2 ? (
-              <div className="p-8 text-center text-gray-500 dark:text-gray-400">
-                Type at least 2 characters to search...
+              <div className="p-4">
+                <div className="text-center text-gray-500 dark:text-gray-400 mb-4">
+                  Type at least 2 characters to search...
+                </div>
+                {recentPosts.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 px-2">
+                      Recent Posts
+                    </h3>
+                    <div className="space-y-1">
+                      {recentPosts.map((post) => (
+                        <Link
+                          key={post.slug}
+                          href={`/posts/${post.slug}`}
+                          className="block p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                          onClick={onClose}
+                        >
+                          <div className="font-medium text-gray-900 dark:text-gray-100 mb-1">
+                            {post.title}
+                          </div>
+                          <div className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                            {post.excerpt.substring(0, 80)}...
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                            <time>{post.date}</time>
+                            {post.categories.length > 0 && (
+                              <>
+                                <span>•</span>
+                                <span>{post.categories.join(', ')}</span>
+                              </>
+                            )}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ) : isLoading ? (
               <div className="p-8 text-center text-gray-500 dark:text-gray-400">

@@ -2,7 +2,7 @@ import { getPaginatedPosts } from '@/lib/posts'
 import PostCard from '@/components/PostCard'
 import Pagination from '@/components/Pagination'
 import { siteConfig } from '@/lib/config'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 interface PageProps {
   params: {
@@ -33,13 +33,13 @@ export default function PaginatedPage({ params }: PageProps) {
   const page = parseInt(params.page)
   
   if (isNaN(page) || page < 2) {
-    notFound()
+    redirect("/")
   }
 
   const { posts, totalPages, currentPage } = getPaginatedPosts(page, siteConfig.pagination.postsPerPage.homepage)
 
   if (posts.length === 0) {
-    notFound()
+    redirect("/")
   }
 
   return (

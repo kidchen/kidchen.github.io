@@ -2,7 +2,7 @@ import { getAllPosts, getTagPosts } from '@/lib/posts'
 import PostCard from '@/components/PostCard'
 import Pagination from '@/components/Pagination'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import { siteConfig } from '@/lib/config'
 
 interface TagPageProps {
@@ -32,7 +32,7 @@ export async function generateStaticParams() {
     // Generate pages 2 and onwards (page 1 is handled by the main tag route)
     for (let page = 2; page <= totalPages; page++) {
       params.push({
-        tag: encodeURIComponent(tag),
+        tag: tag, // Use raw tag name
         page: page.toString()
       })
     }
@@ -56,13 +56,13 @@ export default function TagPaginatedPage({ params }: TagPageProps) {
   const page = parseInt(params.page)
   
   if (isNaN(page) || page < 2) {
-    notFound()
+    redirect("/")
   }
 
   const { posts, totalPages, currentPage, totalPosts } = getTagPosts(tag, page, siteConfig.pagination.postsPerPage.tag)
 
   if (posts.length === 0) {
-    notFound()
+    redirect("/")
   }
 
   return (

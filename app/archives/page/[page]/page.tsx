@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { format } from 'date-fns'
 import Pagination from '@/components/Pagination'
 import { siteConfig } from '@/lib/config'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 interface ArchivePageProps {
   params: {
@@ -34,13 +34,13 @@ export default function ArchivePage({ params }: ArchivePageProps) {
   const page = parseInt(params.page)
   
   if (isNaN(page) || page < 2) {
-    notFound()
+    redirect("/")
   }
 
   const { posts, totalPages, currentPage, totalPosts } = getPaginatedPosts(page, siteConfig.pagination.postsPerPage.archives)
 
   if (posts.length === 0) {
-    notFound()
+    redirect("/")
   }
 
   // Group posts by year

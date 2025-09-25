@@ -1,7 +1,7 @@
 import { getAllPosts, getPostBySlug, markdownToHtml } from '@/lib/posts'
 import { format } from 'date-fns'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import Comments from '@/components/Comments'
 
 interface PostPageProps {
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PostPageProps) {
   
   if (!post) {
     return {
-      title: 'Post Not Found',
+      title: 'Post Not Found | kidChen',
     }
   }
 
@@ -42,7 +42,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const post = getPostBySlug(slug)
 
   if (!post) {
-    notFound()
+    redirect('/')
   }
 
   const contentHtml = await markdownToHtml(post.content)

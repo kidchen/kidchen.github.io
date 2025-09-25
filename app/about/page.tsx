@@ -6,44 +6,51 @@ export default function About() {
         
         <div className="prose prose-lg max-w-none dark:prose-invert">
           <p>
-            I am Chen, a Chinese living in the United States. Music lover. 
-            I am trying to learn Korean just because I really want to understand 
-            the meanings of Epik High's lyrics. I'm also trying to learn how to play guitar. 
-            It's just cool!
+            I'm Chen, a software engineer living in the Bay Area, originally from China. 
+            I'm passionate about backend technologies, distributed systems, and building 
+            scalable applications that handle real-world complexity.
           </p>
           
           <p>
-            Sometimes hiking, sometimes sleeping… But for the most of my time, 
-            I'm working on search related technologies such as indexing (ElasticSearch) 
-            and query processing (NLP). So yes, I am a software engineer, back-end.
+            Music has always been a big part of my life. I recently got a digital piano 
+            and I'm slowly learning to play—it's harder than it looks! I'm also learning 
+            Korean these days, which keeps my brain busy when I'm not coding.
           </p>
           
           <p>
-            Want to know more about me? Check:
+            I'm naturally outgoing and love connecting with people who share similar 
+            interests in technology, music, or just life in general. This blog serves 
+            as my digital notebook where I share technical insights, document interesting 
+            problems I've solved, and occasionally write about non-technical topics 
+            that catch my attention.
           </p>
           
-          <ul>
-            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">微博</a></li>
-            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">GitHub</a></li>
-            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">LinkedIn</a></li>
-            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">Instagram</a></li>
-            <li><a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">Facebook</a></li>
-          </ul>
-          
           <p>
-            or send me an Email. I always like meeting new friends.
+            You can find me on{' '}
+            <a 
+              href="https://github.com/kidchen" 
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            {' '}or send me an{' '}
+            <a 
+              href="mailto:kid.chen@outlook.com" 
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+            >
+              Email
+            </a>
+            . I always enjoy meeting new people and having interesting conversations.
           </p>
           
           <h2>About this site</h2>
           
           <p>
-            This static website is powered by Next.js. The design is modern and responsive,
-            built with Tailwind CSS.
-          </p>
-          
-          <p>
-            When you meet 404 Error (Not Found Error), it redirects to NotFound Project 
-            to help finding missing children.
+            This website is built with Next.js and deployed as a static site. 
+            It features a clean, responsive design powered by Tailwind CSS, 
+            supporting both English and Chinese content with proper dark mode support.
           </p>
         </div>
       </div>

@@ -24,9 +24,9 @@ It also works if you change the star(*) into underline(_).
 
 ### Link: 
 ``` bash
-[My Website](http://kidchen.github.io/)
+[My Website](https://kidchen.github.io/)
 ```
-[My Website](http://kidchen.github.io/)
+[My Website](https://kidchen.github.io/)
 
 ### Reference:
 Add "\>" before a line to express reference (add more "\>" to do nest).
