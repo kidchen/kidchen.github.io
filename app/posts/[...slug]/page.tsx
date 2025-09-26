@@ -93,6 +93,7 @@ export default async function PostPage({ params }: PostPageProps) {
                   <span key={category}>
                     <Link 
                       href={`/categories/${toPinyinSlug(category)}`}
+                      prefetch={false}
                       className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
                     >
                       {category}
@@ -111,7 +112,8 @@ export default async function PostPage({ params }: PostPageProps) {
                   {post.tags.map((tag) => (
                     <Link
                       key={tag}
-                      href={`/tags/${encodeURIComponent(tag)}`}
+                      href={`/tags/${toPinyinSlug(tag)}`}
+                      prefetch={false}
                       className="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-sm hover:bg-blue-200 dark:hover:bg-blue-800"
                     >
                       #{tag}
