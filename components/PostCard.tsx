@@ -14,7 +14,7 @@ export default function PostCard({ post }: PostCardProps) {
         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
           <Link 
             href={`/posts/${post.slug}`}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
           >
             {post.title}
           </Link>
@@ -32,7 +32,7 @@ export default function PostCard({ post }: PostCardProps) {
                 <span key={category}>
                   <Link 
                     href={`/categories/${toPinyinSlug(category)}`}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    className="text-primary-500 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300"
                   >
                     {category}
                   </Link>
@@ -57,7 +57,7 @@ export default function PostCard({ post }: PostCardProps) {
       <div className="flex justify-between items-center">
         <Link 
           href={`/posts/${post.slug}`}
-          className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+          className="text-primary-500 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-medium"
         >
           Read More →
         </Link>

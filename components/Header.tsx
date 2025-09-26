@@ -40,26 +40,26 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <Link href="/" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400">
               Home
             </Link>
-            <Link href="/archives" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <Link href="/archives" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400">
               Archives
             </Link>
-            <Link href="/categories" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <Link href="/categories" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400">
               Categories
             </Link>
-            <Link href="/tags" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <Link href="/tags" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400">
               Tags
             </Link>
-            <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400">
               About
             </Link>
             
             {/* Search Button */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 flex items-center gap-2"
+              className="text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 flex items-center gap-2"
               title="Search (⌘K)"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

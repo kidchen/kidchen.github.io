@@ -51,11 +51,11 @@ body {
 }
 
 .dark .prose :where(a):not(:where([class~="not-prose"] *)) {
-  @apply text-blue-400;
+  @apply text-primary-400;
 }
 
 .dark .prose :where(a):not(:where([class~="not-prose"] *)):hover {
-  @apply text-blue-300;
+  @apply text-primary-300;
 }
 
 .dark .prose :where(code):not(:where([class~="not-prose"] *)) {
@@ -74,7 +74,7 @@ body {
 }
 
 .dark .prose :where(blockquote):not(:where([class~="not-prose"] *)) {
-  @apply border-blue-400 bg-blue-900/20 text-gray-300;
+  @apply border-primary-400 bg-primary-900/20 text-gray-300;
 }
 
 .dark .prose :where(th):not(:where([class~="not-prose"] *)) {

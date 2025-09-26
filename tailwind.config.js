@@ -9,6 +9,20 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      colors: {
+        primary: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6', // Main blue from logo
+          600: '#2563eb',
+          700: '#1d4ed8',
+          800: '#1e40af',
+          900: '#1e3a8a',
+        },
+      },
       fontFamily: {
         'sans': ['var(--font-ovo)', 'Georgia', 'serif'],
         'mono': ['var(--font-source-code-pro)', 'Monaco', 'Consolas', 'monospace'],
@@ -20,11 +34,11 @@ module.exports = {
             color: '#374151',
             fontFamily: 'var(--font-ovo), Georgia, serif',
             a: {
-              color: '#2563eb',
+              color: '#3b82f6', // Logo blue
               textDecoration: 'none',
               fontWeight: '500',
               '&:hover': {
-                color: '#1d4ed8',
+                color: '#2563eb', // Darker blue on hover
                 textDecoration: 'underline',
               },
             },
@@ -59,8 +73,8 @@ module.exports = {
             blockquote: {
               fontStyle: 'normal',
               borderLeftWidth: '4px',
-              borderLeftColor: '#3b82f6',
-              backgroundColor: '#eff6ff',
+              borderLeftColor: '#3b82f6', // Logo blue
+              backgroundColor: '#eff6ff', // Light blue background
               padding: '1rem 1.5rem',
               margin: '1.5rem 0',
             },
